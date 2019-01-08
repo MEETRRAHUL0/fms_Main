@@ -1,0 +1,818 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{55E95BDE-A701-4AD2-88A3-FF72EDDF5C98}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FMS</RootNamespace>
+    <AssemblyName>FMS</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-3.3.7\.gitattributes" />
+    <Content Include="Content\bootstrap-3.3.7\.gitignore" />
+    <Content Include="Content\bootstrap-3.3.7\dist\css\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-3.3.7\dist\css\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-3.3.7\dist\css\bootstrap.css" />
+    <Content Include="Content\bootstrap-3.3.7\dist\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap-3.3.7\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\bootstrap-3.3.7\dist\js\bootstrap.js" />
+    <Content Include="Content\bootstrap-3.3.7\dist\js\bootstrap.min.js" />
+    <Content Include="Content\bootstrap-3.3.7\dist\js\npm.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\about.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\apple-touch-icon.png" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\brand\bootstrap-outline.svg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\brand\bootstrap-punchout.svg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\brand\bootstrap-solid.svg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\css\docs.min.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\css\ie10-viewport-bug-workaround.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\css\src\docs.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\css\src\pygments-manni.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\flash\ZeroClipboard.swf" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\img\components.png" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\img\devices.png" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\img\expo-lyft.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\img\expo-newsweek.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\img\expo-riot.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\img\expo-vogue.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\img\sass-less.png" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\customize.min.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\docs.min.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\ie-emulation-modes-warning.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\ie10-viewport-bug-workaround.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\ie8-responsive-file-warning.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\raw-files.min.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\src\application.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\src\customizer.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\vendor\anchor.min.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\vendor\autoprefixer.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\vendor\Blob.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\vendor\FileSaver.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\vendor\holder.min.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\vendor\jquery.min.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\vendor\jszip.min.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\vendor\less.min.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\vendor\uglify.min.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\js\vendor\ZeroClipboard.min.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\browser-bugs.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\components.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\css.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\customize.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\dist\css\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\dist\css\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\dist\css\bootstrap.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\dist\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\dist\js\bootstrap.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\dist\js\bootstrap.min.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\dist\js\npm.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\blog\blog.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\blog\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\carousel\carousel.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\carousel\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\cover\cover.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\cover\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\dashboard\dashboard.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\dashboard\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\grid\grid.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\grid\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\jumbotron-narrow\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\jumbotron-narrow\jumbotron-narrow.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\jumbotron\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\jumbotron\jumbotron.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\justified-nav\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\justified-nav\justified-nav.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\navbar-fixed-top\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\navbar-fixed-top\navbar-fixed-top.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\navbar-static-top\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\navbar-static-top\navbar-static-top.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\navbar\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\navbar\navbar.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\non-responsive\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\non-responsive\non-responsive.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\offcanvas\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\offcanvas\offcanvas.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\offcanvas\offcanvas.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\blog.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\carousel.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\cover.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\dashboard.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\equal-height-columns.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\grid.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\jumbotron-narrow.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\jumbotron.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\justified-nav.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\navbar-fixed.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\navbar-static.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\navbar.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\non-responsive.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\offcanvas.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\sign-in.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\starter-template.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\sticky-footer-navbar.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\sticky-footer.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\screenshots\theme.jpg" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\signin\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\signin\signin.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\starter-template\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\starter-template\starter-template.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\sticky-footer-navbar\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\sticky-footer-navbar\sticky-footer-navbar.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\sticky-footer\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\sticky-footer\sticky-footer.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\theme\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\theme\theme.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\tooltip-viewport\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\tooltip-viewport\tooltip-viewport.css" />
+    <Content Include="Content\bootstrap-3.3.7\docs\examples\tooltip-viewport\tooltip-viewport.js" />
+    <Content Include="Content\bootstrap-3.3.7\docs\favicon.ico" />
+    <Content Include="Content\bootstrap-3.3.7\docs\getting-started.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\javascript.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\migration.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\robots.txt" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\ads.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\alerts.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\badges.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\breadcrumbs.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\button-dropdowns.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\button-groups.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\dropdowns.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\glyphicons.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\input-groups.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\jumbotron.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\labels.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\list-group.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\media.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\navbar.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\navs.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\page-header.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\pagination.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\panels.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\progress-bars.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\responsive-embed.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\thumbnails.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\components\wells.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\css\buttons.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\css\code.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\css\forms.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\css\grid.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\css\helpers.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\css\images.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\css\less.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\css\overview.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\css\responsive-utilities.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\css\sass.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\css\tables.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\css\type.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\customizer-variables.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\footer.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\getting-started\accessibility.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\getting-started\browser-device-support.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\getting-started\community.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\getting-started\disabling-responsiveness.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\getting-started\download.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\getting-started\examples.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\getting-started\grunt.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\getting-started\license.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\getting-started\template.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\getting-started\third-party-support.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\getting-started\tools.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\getting-started\translations.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\getting-started\whats-included.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\header.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\js\affix.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\js\alerts.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\js\buttons.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\js\carousel.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\js\collapse.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\js\dropdowns.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\js\modal.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\js\overview.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\js\popovers.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\js\scrollspy.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\js\tabs.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\js\tooltips.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\js\transitions.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\nav\about.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\nav\components.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\nav\css.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\nav\customize.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\nav\getting-started.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\nav\javascript.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\nav\main.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_includes\nav\migration.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_layouts\default.html" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_layouts\home.html" />
+    <Content Include="Content\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\bootstrap-3.3.7\Gruntfile.js" />
+    <Content Include="Content\bootstrap-3.3.7\grunt\bs-commonjs-generator.js" />
+    <Content Include="Content\bootstrap-3.3.7\grunt\bs-glyphicons-data-generator.js" />
+    <Content Include="Content\bootstrap-3.3.7\grunt\bs-lessdoc-parser.js" />
+    <Content Include="Content\bootstrap-3.3.7\grunt\bs-raw-files-generator.js" />
+    <Content Include="Content\bootstrap-3.3.7\grunt\change-version.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\affix.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\alert.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\button.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\carousel.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\collapse.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\dropdown.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\modal.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\popover.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\scrollspy.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\tab.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\index.html" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\unit\affix.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\unit\alert.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\unit\button.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\unit\carousel.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\unit\collapse.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\unit\dropdown.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\unit\modal.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\unit\phantom.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\unit\popover.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\unit\scrollspy.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\unit\tab.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\unit\tooltip.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\vendor\jquery.min.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\vendor\qunit.css" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\vendor\qunit.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\visual\affix-with-sticky-footer.html" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\visual\affix.html" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\visual\alert.html" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\visual\button.html" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\visual\carousel.html" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\visual\collapse.html" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\visual\dropdown.html" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\visual\modal.html" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\visual\popover.html" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\visual\scrollspy.html" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\visual\tab.html" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\visual\tooltip.html" />
+    <Content Include="Content\bootstrap-3.3.7\js\tooltip.js" />
+    <Content Include="Content\bootstrap-3.3.7\js\transition.js" />
+    <Content Include="Content\bootstrap-3.3.7\package.js" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Content\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\Default.png" />
+    <Content Include="Content\Images\KB.png" />
+    <Content Include="Content\Images\KbLogo.jpg" />
+    <Content Include="Content\Images\loading.gif" />
+    <Content Include="Content\LeftMenuStyles.css" />
+    <Content Include="Content\MenuTest.css" />
+    <Content Include="Content\TopBrandStyle.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="App_Data\TempMenu.json" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\core.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\list.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\path.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="Content\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="Content\bootstrap-3.3.7\.editorconfig" />
+    <Content Include="Content\bootstrap-3.3.7\.hound.yml" />
+    <Content Include="Content\bootstrap-3.3.7\.travis.yml" />
+    <Content Include="Content\bootstrap-3.3.7\bower.json" />
+    <Content Include="Content\bootstrap-3.3.7\CHANGELOG.md" />
+    <Content Include="Content\bootstrap-3.3.7\CNAME" />
+    <Content Include="Content\bootstrap-3.3.7\composer.json" />
+    <Content Include="Content\bootstrap-3.3.7\CONTRIBUTING.md" />
+    <Content Include="Content\bootstrap-3.3.7\dist\css\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-3.3.7\dist\css\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-3.3.7\dist\css\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-3.3.7\dist\css\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap-3.3.7\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-3.3.7\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bootstrap-3.3.7\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\bootstrap-3.3.7\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\bootstrap-3.3.7\docs\assets\css\docs.min.css.map" />
+    <Content Include="Content\bootstrap-3.3.7\docs\dist\css\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-3.3.7\docs\dist\css\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-3.3.7\docs\dist\css\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-3.3.7\docs\dist\css\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap-3.3.7\docs\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-3.3.7\docs\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bootstrap-3.3.7\docs\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\bootstrap-3.3.7\docs\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\bootstrap-3.3.7\docs\LICENSE" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_data\browser-bugs.yml" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_data\browser-features.yml" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_data\core-team.yml" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_data\glyphicons.yml" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_data\sass-team.yml" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_data\showcase.yml" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_data\translations.yml" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_plugins\bridge.rb" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_plugins\bugify.rb" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_pug\customizer-nav.pug" />
+    <Content Include="Content\bootstrap-3.3.7\docs\_pug\customizer-variables.pug" />
+    <Content Include="Content\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\bootstrap-3.3.7\Gemfile" />
+    <Content Include="Content\bootstrap-3.3.7\Gemfile.lock" />
+    <Content Include="Content\bootstrap-3.3.7\grunt\.jshintrc" />
+    <Content Include="Content\bootstrap-3.3.7\grunt\configBridge.json" />
+    <Content Include="Content\bootstrap-3.3.7\grunt\npm-shrinkwrap.json" />
+    <Content Include="Content\bootstrap-3.3.7\grunt\sauce_browsers.yml" />
+    <Content Include="Content\bootstrap-3.3.7\ISSUE_TEMPLATE.md" />
+    <Content Include="Content\bootstrap-3.3.7\js\.jscsrc" />
+    <Content Include="Content\bootstrap-3.3.7\js\.jshintrc" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\README.md" />
+    <Content Include="Content\bootstrap-3.3.7\js\tests\unit\.jshintrc" />
+    <Content Include="Content\bootstrap-3.3.7\less\.csscomb.json" />
+    <Content Include="Content\bootstrap-3.3.7\less\.csslintrc" />
+    <Content Include="Content\bootstrap-3.3.7\less\alerts.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\badges.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\bootstrap.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\breadcrumbs.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\button-groups.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\buttons.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\carousel.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\close.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\code.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\component-animations.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\dropdowns.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\forms.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\glyphicons.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\grid.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\input-groups.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\jumbotron.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\labels.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\list-group.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\media.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\alerts.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\background-variant.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\border-radius.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\buttons.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\center-block.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\clearfix.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\forms.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\gradients.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\grid-framework.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\grid.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\hide-text.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\image.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\labels.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\list-group.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\nav-divider.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\nav-vertical-align.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\opacity.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\pagination.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\panels.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\progress-bar.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\reset-filter.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\reset-text.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\resize.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\responsive-visibility.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\size.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\tab-focus.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\table-row.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\text-emphasis.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\text-overflow.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\mixins\vendor-prefixes.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\modals.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\navbar.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\navs.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\normalize.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\pager.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\pagination.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\panels.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\popovers.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\print.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\progress-bars.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\responsive-embed.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\responsive-utilities.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\scaffolding.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\tables.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\theme.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\thumbnails.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\tooltip.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\type.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\utilities.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\variables.less" />
+    <Content Include="Content\bootstrap-3.3.7\less\wells.less" />
+    <Content Include="Content\bootstrap-3.3.7\LICENSE" />
+    <Content Include="Content\bootstrap-3.3.7\nuget\bootstrap.less.nuspec" />
+    <Content Include="Content\bootstrap-3.3.7\nuget\bootstrap.nuspec" />
+    <Content Include="Content\bootstrap-3.3.7\nuget\MyGet.ps1" />
+    <Content Include="Content\bootstrap-3.3.7\package.json" />
+    <Content Include="Content\bootstrap-3.3.7\README.md" />
+    <Content Include="Content\bootstrap-3.3.7\_config.yml" />
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-latest.min.js" />
+    <Content Include="Scripts\MenuTest.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.blockUI.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\LeftMenuScript.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\tblMenusController.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\GSTController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
+    <Compile Include="Controllers\ItemUnitsController.cs" />
+    <Compile Include="Controllers\MenusController.cs" />
+    <Compile Include="Controllers\PaymentModeController.cs" />
+    <Compile Include="Controllers\PurchaseController.cs" />
+    <Compile Include="Controllers\SaleController.cs" />
+    <Compile Include="Controllers\SequenceController.cs" />
+    <Compile Include="Controllers\StockAvailableController.cs" />
+    <Compile Include="Controllers\StockDetailsController.cs" />
+    <Compile Include="Controllers\StockExpirydetailsController.cs" />
+    <Compile Include="Controllers\ItemTypeController.cs" />
+    <Compile Include="Controllers\VendorController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\EnumHelper.cs" />
+    <Compile Include="Helper\Helper.cs" />
+    <Compile Include="Helper\MenuHelper.cs" />
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GSTEntity.cs" />
+    <Compile Include="Models\ItemStockEntity.cs" />
+    <Compile Include="Models\MenuEntity.cs" />
+    <Compile Include="Models\tblItem.cs" />
+    <Compile Include="Models\tbl_ItemStock.cs" />
+    <Compile Include="Models\tbl_ItemTypeEntity.cs" />
+    <Compile Include="Models\tbl_ItemUnitsEntity.cs" />
+    <Compile Include="Models\tbl_PaymentModeEntity.cs" />
+    <Compile Include="Models\tbl_Purchase.cs" />
+    <Compile Include="Models\tbl_Supplier.cs" />
+    <Compile Include="Models\VMItemOpeningStock.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tblMenu.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_GST.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Items.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ItemStock.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ItemType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ItemUnits.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PaymentMode.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Purchase.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Sale.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Sequence.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Transaction.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_vendor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_VendorAddress.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_vendorType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_StockAvailable.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_StockAvailableold.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_StockDetails.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_StockExpirydetails.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="packages.config" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\web.config" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\View.cshtml" />
+    <Content Include="Views\Items\Create.cshtml" />
+    <Content Include="Views\Items\Delete.cshtml" />
+    <Content Include="Views\Items\Details.cshtml" />
+    <Content Include="Views\Items\Edit.cshtml" />
+    <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Views\Purchase\Create.cshtml" />
+    <Content Include="Views\Purchase\Delete.cshtml" />
+    <Content Include="Views\Purchase\Details.cshtml" />
+    <Content Include="Views\Purchase\Edit.cshtml" />
+    <Content Include="Views\Purchase\Index.cshtml" />
+    <Content Include="Views\Menus\Create.cshtml" />
+    <Content Include="Views\Menus\Delete.cshtml" />
+    <Content Include="Views\Menus\Details.cshtml" />
+    <Content Include="Views\Menus\Edit.cshtml" />
+    <Content Include="Views\Menus\Index.cshtml" />
+    <Content Include="Views\Purchase\LoadItems.cshtml" />
+    <Content Include="Views\Purchase\CreateItemList.cshtml" />
+    <Content Include="Views\Sale\Create.cshtml" />
+    <Content Include="Views\Sale\Delete.cshtml" />
+    <Content Include="Views\Sale\Details.cshtml" />
+    <Content Include="Views\Sale\Edit.cshtml" />
+    <Content Include="Views\Sale\Index.cshtml" />
+    <Content Include="Views\Shared\LeftMenu.cshtml" />
+    <Content Include="Views\Shared\TopBrandMenu.cshtml" />
+    <Content Include="Views\Shared\TopMenuTest.cshtml" />
+    <Content Include="Views\Shared\TopMenuTemplets.cshtml" />
+    <Content Include="Views\Purchase\Viewtems.cshtml" />
+    <Content Include="Views\StockAvailable\Index.cshtml" />
+    <Content Include="Views\StockDetails\Index.cshtml" />
+    <Content Include="Views\StockExpirydetails\Index.cshtml" />
+    <Content Include="Views\Items\OpeningStock.cshtml" />
+    <Content Include="Views\Items\CreateVM.cshtml" />
+    <Content Include="Views\Sale\CreateItemList.cshtml" />
+    <Content Include="Views\Sale\LoadItems.cshtml" />
+    <Content Include="Views\Sale\Viewtems.cshtml" />
+    <Content Include="Views\Vendor\Create.cshtml" />
+    <Content Include="Views\Vendor\Delete.cshtml" />
+    <Content Include="Views\Vendor\Details.cshtml" />
+    <Content Include="Views\Vendor\Edit.cshtml" />
+    <Content Include="Views\Vendor\Index.cshtml" />
+    <Content Include="Views\GST\Create.cshtml" />
+    <Content Include="Views\GST\Delete.cshtml" />
+    <Content Include="Views\GST\Details.cshtml" />
+    <Content Include="Views\GST\Edit.cshtml" />
+    <Content Include="Views\GST\Index.cshtml" />
+    <Content Include="Views\ItemType\Create.cshtml" />
+    <Content Include="Views\ItemType\Delete.cshtml" />
+    <Content Include="Views\ItemType\Details.cshtml" />
+    <Content Include="Views\ItemType\Edit.cshtml" />
+    <Content Include="Views\ItemType\Index.cshtml" />
+    <Content Include="Views\ItemUnits\Create.cshtml" />
+    <Content Include="Views\ItemUnits\Delete.cshtml" />
+    <Content Include="Views\ItemUnits\Details.cshtml" />
+    <Content Include="Views\ItemUnits\Edit.cshtml" />
+    <Content Include="Views\ItemUnits\Index.cshtml" />
+    <Content Include="Views\PaymentMode\Create.cshtml" />
+    <Content Include="Views\PaymentMode\Delete.cshtml" />
+    <Content Include="Views\PaymentMode\Details.cshtml" />
+    <Content Include="Views\PaymentMode\Edit.cshtml" />
+    <Content Include="Views\PaymentMode\Index.cshtml" />
+    <Content Include="Views\Sequence\Create.cshtml" />
+    <Content Include="Views\Sequence\Delete.cshtml" />
+    <Content Include="Views\Sequence\Details.cshtml" />
+    <Content Include="Views\Sequence\Edit.cshtml" />
+    <Content Include="Views\Sequence\Index.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57426</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:57426/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

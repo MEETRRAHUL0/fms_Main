@@ -1,0 +1,94 @@
+﻿@model IEnumerable<FMS.vw_StockExpirydetails>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Stock Expiry report</h2>
+
+ 
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HSN_SAC_NO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MeasuringUnits)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Supplier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MeasuringUnit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Expirydate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BatchNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StockType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PurchaseID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SaleID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qty)
+        </th>
+         
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HSN_SAC_NO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MeasuringUnits)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Supplier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MeasuringUnit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Expirydate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BatchNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StockType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchaseID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SaleID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Qty)
+        </td>
+         
+    </tr>
+}
+
+</table>

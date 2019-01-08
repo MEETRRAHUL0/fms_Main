@@ -1,0 +1,15 @@
+USE [FMSExp]
+GO
+
+INSERT INTO [dbo].[tblMenu]
+           ([DisplayName],[icon],[type],[ordinal],[path],[ParentID],[IsEnable])
+     VALUES
+           ('View Purchase','fa fa-align-justify fa-fw',NULL,1,'',7,NULL),
+		   ('Add Purchase','fa fa-align-justify fa-fw',NULL,1,'',7,NULL),
+		   ('Purchase Return','fa fa-align-justify fa-fw',NULL,1,'',7,NULL),
+		   ('View List','fa fa-align-justify fa-fw',NULL,1,'',7,NULL),
+		   ('Add Stock Book','fa fa-align-justify fa-fw',NULL,1,'',7,'False'),
+		   ('Purchase Setting','fa fa-align-justify fa-fw',NULL,1,'',7,NULL)
+ 
+
+

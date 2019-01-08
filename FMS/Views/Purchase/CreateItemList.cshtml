@@ -1,0 +1,484 @@
+﻿@model FMS.tbl_ItemStock
+<style>
+    .changeHeader {
+        color: #fff;
+        background-color: #000;
+        padding: 10px;
+        font-weight: 700;
+    }
+
+    .changeloc_close {
+        color: #ccc;
+        position: relative;
+        top: 3px;
+        cursor: pointer;
+    }
+
+    .imgdetails {
+        width: 82%;
+        height: 100%;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+</style>
+<div>
+    <div class="modal" role="dialog" id="createItemListModal" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" style="left: auto;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="row">
+                        <div class="changeHeader">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <strong>Add New Purchase Item</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="MarginLeft">
+                            @using (Html.BeginForm(null, null, FormMethod.Get, new { id = "FormItemList" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-horizontal">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                    @Html.Hidden("ID", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.Hidden("PurchaseID", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.Hidden("CreatedDatetime", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.Hidden("InvoiceNo", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.Hidden("StockType", null, htmlAttributes: new { @class = "form-control" })
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="col-md-3  ">
+                                                ID :  @ViewBag.ID <br /> PurchaseID :  @ViewBag.PurchaseID
+                                            </div>
+                                            <div class="col-md-offset-8">
+                                                Created on :  @ViewBag.CreatedDatetime <br /> InvoiceNo :  @ViewBag.InvoiceNo
+                                            </div>
+                                        </div>
+                                        <hr style="margin-top: 0px;" />
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.ItemID, "ItemID", htmlAttributes: new { @class = "control-label col-md-5" })
+                                                <div class="col-md-7">
+                                                    @Html.DropDownList("ItemID", null, "Please select", htmlAttributes: new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.ItemID, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="control-label col-md-5">
+                                                    @Html.LabelFor(model => model.Qty, htmlAttributes: new { @class = "" })<strong><span id="spn_QtyMsr"></span></strong>
+                                                </div>
+                                                    <div class="col-md-7">
+                                                    @Html.EditorFor(model => model.Qty, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Qty, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.PricePerUnit, htmlAttributes: new { @class = "control-label col-md-5" })
+                                                <div class="col-md-7">
+                                                    @Html.EditorFor(model => model.PricePerUnit, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.PricePerUnit, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            @*<div class="form-group">
+                                                    @Html.LabelFor(model => model.ItemwiseDiscount, htmlAttributes: new { @class = "control-label col-md-4" })
+                                                    <div class="col-md-6">
+                                                        @Html.EditorFor(model => model.ItemwiseDiscount, new { htmlAttributes = new { @class = "form-control " } })
+                                                        @Html.ValidationMessageFor(model => model.ItemwiseDiscount, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.PricePerUnitAfterDiscount, htmlAttributes: new { @class = "control-label col-md-4" })
+                                                    <div class="col-md-6">
+                                                        @Html.EditorFor(model => model.PricePerUnitAfterDiscount, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.PricePerUnitAfterDiscount, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>*@
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.MRP, htmlAttributes: new { @class = "control-label col-md-5" })
+                                                <div class="col-md-7">
+                                                    @Html.EditorFor(model => model.MRP, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.MRP, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <table>
+                                                <tr><td> Stock In :</td><td><span id="spn_StockIn">0</span> </td></tr>
+                                                <tr><td> Stock Out : </td><td> <span id="spn_StockOut">0</span> </td></tr>
+                                                <tr><td> Avalavel Stock : </td><td> <span id="spn_StockAvl">0</span> </td></tr>
+
+                                                <tr><td> HSN SAC Num : </td><td>  <span id="spn_HSNSACNum">0</span> </td></tr>
+                                                <tr><td> MeasuringUnit : </td><td> <span id="spn_MeasuringUnit">0</span> </td></tr>
+                                                <tr><td> Type  : </td><td> <span id="spn_Type">0</span></td></tr>
+
+                                                <tr><td> SGST : </td><td> <span id="spn_SGST">0</span> </td></tr>
+                                                <tr><td> CGST : </td><td> <span id="spn_CGST">0</span> </td></tr>
+                                                <tr><td> GST  : </td><td> <span id="spn_GST">0</span></td></tr>
+                                            </table>
+
+                                        </div>
+                                        <div class="col-md-4" style="border:dashed">
+                                            <div>
+                                                <img class="imgdetails" id="currentPhoto" src="~/Content/Images/Default.png" onerror="this.src='~/Content/Images/Default.png'" alt="">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <hr />
+                                        <div class="col-md-6">
+
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.SGST, htmlAttributes: new { @class = "control-label col-md-6" })
+                                                <div class="col-md-4">
+                                                    @Html.EditorFor(model => model.SGST, new { htmlAttributes = new { @readonly = true, @class = "form-control" } })
+                                                    @*@Html.ValidationMessageFor(model => model.SGST, "", new { @class = "text-danger" })*@
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.CGST, htmlAttributes: new { @class = "control-label col-md-6" })
+                                                <div class="col-md-4">
+                                                    @Html.EditorFor(model => model.CGST, new { htmlAttributes = new { @readonly = true, @class = "form-control" } })
+                                                    @*@Html.ValidationMessageFor(model => model.CGST, "", new { @class = "text-danger" })*@
+                                                </div>
+                                            </div>
+
+                                            @*<div class="form-group">
+                                                    @Html.LabelFor(model => model.IGST, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-4">
+                                                        @Html.EditorFor(model => model.IGST, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.IGST, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>*@
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.GST, htmlAttributes: new { @class = "control-label col-md-6" })
+                                                <div class="col-md-4">
+                                                    @Html.EditorFor(model => model.GST, new { htmlAttributes = new { @readonly = true, @class = "form-control" } })
+                                                    @*@Html.ValidationMessageFor(model => model.GST, "", new { @class = "text-danger" })*@
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.TotalPriceBeforeTax, htmlAttributes: new { @class = "control-label col-md-6" })
+                                                <div class="col-md-4">
+                                                    @Html.EditorFor(model => model.TotalPriceBeforeTax, new { htmlAttributes = new { @readonly = true, @class = "form-control " } })
+                                                    @*@Html.ValidationMessageFor(model => model.TotalPriceBeforeTax, "", new { @class = "text-danger" })*@
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.TotalPriceAfterTax, htmlAttributes: new { @class = "control-label col-md-6" })
+                                                <div class="col-md-4">
+                                                    @Html.EditorFor(model => model.TotalPriceAfterTax, new { htmlAttributes = new { @readonly = true, @class = "form-control " } })
+                                                    @*@Html.ValidationMessageFor(model => model.TotalPriceAfterTax, "", new { @class = "text-danger" })*@
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-12">
+                                            <hr />
+
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.ManufactureDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                                                <div class="col-md-6">
+                                                    @Html.EditorFor(model => model.ManufactureDate, new { htmlAttributes = new { @class = "form-control", @Type = "date" } })
+                                                    @Html.ValidationMessageFor(model => model.ManufactureDate, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Expirydate, htmlAttributes: new { @class = "control-label col-md-4" })
+                                                <div class="col-md-6">
+                                                    @Html.EditorFor(model => model.Expirydate, new { htmlAttributes = new { @class = "form-control", @Type = "date" } })
+                                                    @Html.ValidationMessageFor(model => model.Expirydate, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.BatchNo, htmlAttributes: new { @class = "control-label col-md-4" })
+                                                <div class="col-md-6">
+                                                    @Html.EditorFor(model => model.BatchNo, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.BatchNo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-xs-12" id="DivCreateBtnContainer">
+                            <div class="">
+                                <div class="form-group">
+                                    <button type="button" id="BtnCreate" class="btncorner btn btn-danger" style="border-radius: 5px;">CREATE</button>
+                                    <button type="button" id="BtnCancel" class="btncorner btn" style="border-radius: 5px;">CANCEL</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        //$("#ItemID").change(function (event) {
+        $('#ItemID').off('change.ItemID').on('change.ItemID', function (e) {
+            //debugger;
+            $("#TotalPriceBeforeTax").val("");
+            $("#GST").val("");
+            $("#CGST").val("");
+            $("#SGST").val("");
+            $('#TotalPriceAfterTax').val("");
+            $('#PricePerUnit').val("")
+            $("#Qty").val("");
+            
+
+            $("#MRP").val("");
+            $('#ManufactureDate').val("");
+            $('#Expirydate').val("")
+            $("#BatchNo").val("");
+
+
+            var id = $(this).val();
+            $.ajax({
+                url: "/Purchase/GetItemDetails/" + id,
+                data: { "id": id },
+                //data: { request: JSON.stringify(id) },
+                cache: false,
+                type: "POST",
+                dataType: "json",
+
+                success: function (data, textStatus, XMLHttpRequest) {
+                    //debugger
+                    $("#spn_StockIn").text(data.StockIn);
+                    $("#spn_StockOut").text(data.StockOut);
+                    $("#spn_StockAvl").text(data.StockAvailable);
+
+                    $("#spn_HSNSACNum").text(data.HSNSACNum);
+                    $("#spn_MeasuringUnit").text(data.MeasuringUnit);
+                    $("#spn_QtyMsr").text(" ( in " + data.MeasuringUnit + " )");
+                    $("#spn_Type").text(data.Type);
+
+                    $("#spn_SGST").text(data.SGST);
+                    $("#spn_CGST").text(data.CGST);
+                    $("#spn_GST").text(data.GST);
+
+                }
+            });
+        });
+
+        $('#Qty').off('keyup.Qty').on('keyup.Qty', function (e) {
+            if ($('#ItemID').val() == "") {
+                $("#ItemID").focus();
+                $("#ItemID").css("border-color", "#FF0000");
+                return false;
+            }
+            var price = $('#PricePerUnit').val()
+            debugger;
+
+            $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+            if ((event.which != 8 || event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57) && (event.which < 96 || event.which > 105)) {
+                event.preventDefault();
+            }
+            else {
+
+                //debugger
+                var Qty = $("#Qty").val();
+                if (price > 0) {
+
+                    //$('#ItemwiseDiscount').val(0);
+                    //$('#PricePerUnitAfterDiscount').val(price);
+                    var totalBeforeTax = Qty * price;
+                    $("#TotalPriceBeforeTax").val(totalBeforeTax);
+
+                    var gst = $("#spn_GST").text();
+                    var cgst = $("#spn_CGST").text();
+                    var sgst = $("#spn_SGST").text();
+
+                    var gst_Value = totalBeforeTax * (gst / 100);
+                    var cgst_Value = totalBeforeTax * (cgst / 100);
+                    var sgst_Value = totalBeforeTax * (sgst / 100);
+
+                    $("#GST").val(gst_Value);
+                    $("#CGST").val(cgst_Value);
+                    $("#SGST").val(sgst_Value);
+
+                    var totalAfterTax = totalBeforeTax + gst_Value;
+                    $('#TotalPriceAfterTax').val(totalAfterTax);
+                }
+                else {
+                    //alert("Plese add qty !");
+                    //$('#PricePerUnit').val("");
+                    //$("#Qty").focus();
+                    //$("#Qty").css("border-color", "#FF0000");
+
+                }
+            }
+        });
+
+        $('#PricePerUnit').off('keyup.PricePerUnit').on('keyup.PricePerUnit', function (e) {
+
+            if ($('#ItemID').val() == "") {
+                $("#ItemID").focus();
+                $("#ItemID").css("border-color", "#FF0000");
+                return false;
+            }
+            var price = $('#PricePerUnit').val()
+
+            $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+
+            //if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+            if ((event.which != 8 || event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57) && (event.which < 96 || event.which > 105)) {
+                event.preventDefault();
+            }
+            else {
+
+                //debugger
+                var Qty = $("#Qty").val();
+                if (Qty > 0) {
+
+                    //$('#ItemwiseDiscount').val(0);
+                    //$('#PricePerUnitAfterDiscount').val(price);
+                    var totalBeforeTax = Qty * price;
+                    $("#TotalPriceBeforeTax").val(totalBeforeTax);
+
+                    var gst = $("#spn_GST").text();
+                    var cgst = $("#spn_CGST").text();
+                    var sgst = $("#spn_SGST").text();
+
+                    var gst_Value = totalBeforeTax * (gst / 100);
+                    var cgst_Value = totalBeforeTax * (cgst / 100);
+                    var sgst_Value = totalBeforeTax * (sgst / 100);
+
+                    $("#GST").val(gst_Value);
+                    $("#CGST").val(cgst_Value);
+                    $("#SGST").val(sgst_Value);
+
+                    var totalAfterTax = totalBeforeTax + gst_Value;
+                    $('#TotalPriceAfterTax').val(totalAfterTax);
+                }
+                else {
+                    alert("Plese add qty !");
+                    $('#PricePerUnit').val("");
+                    $("#Qty").focus();
+                    $("#Qty").css("border-color", "#FF0000");
+
+                }
+            }
+        });
+
+        $('#TotalPriceBeforeTax').off('keyup.TotalPriceBeforeTax').on('keyup.TotalPriceBeforeTax', function (e) {
+            /*debugger*/;
+            var price = $('#TotalPriceBeforeTax').val()
+
+            $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+            else {
+
+                //debugger
+                var Qty = $("#Qty").val();
+                if (Qty > 0) {
+
+                    $('#ItemwiseDiscount').val(0);
+                    $('#PricePerUnitAfterDiscount').val(price);
+                    var total = price / Qty;
+                    $("#PricePerUnit").val(total);
+                    $("#PricePerUnitAfterTax").val(total);
+
+                }
+                else {
+                    alert("Plese add qty !");
+                    $('#TotalPriceBeforeTax').val("");
+                    $("#Qty").focus();
+                    $("#Qty").css("border-color", "#FF0000");
+
+                }
+            }
+        })
+    });
+
+    $('#createItemListModal').modal({ backdrop: 'static', keyboard: false })
+
+    $("#BtnCancel").click(
+        function (id) {
+            // debugger;
+            alert("are u sure ?");
+            $('#createItemListModal').modal('hide');
+
+        });
+
+    $("#BtnCreate").click(
+        function (id) {
+            debugger
+            if ($('#ItemID').val() == "") {
+                $("#ItemID").focus();
+                $("#ItemID").css("border-color", "#FF0000");
+                return false;
+            }
+            if ($('#Qty').val() == "") {
+                $("#Qty").focus();
+                $("#Qty").css("border-color", "#FF0000");
+                return false;
+            }
+
+            if ($('#PricePerUnit').val() == "") {
+                $("#PricePerUnit").focus();
+                $("#PricePerUnit").css("border-color", "#FF0000");
+                return false;
+            }
+
+            if ($('#MRP').val() == "") {
+                $("#MRP").focus();
+                $("#MRP").css("border-color", "#FF0000");
+                return false;
+            }
+
+            //debugger;
+            //$.blockUI();
+            //var d1 = $('#FormItemList').serialize();
+            //var data1 = $('#FormItemList').serializeArray();
+            var data = $('#FormItemList').serializeArray().reduce(function (obj, item) {
+                obj[item.name] = item.value;
+                return obj;
+            }, {});
+            //debugger;
+            AddItemToSession(data);
+
+        });
+</script>

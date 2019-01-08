@@ -1,0 +1,241 @@
+﻿@model FMS.tbl_vendor
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbl_vendor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AutoID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AutoID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactPerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactPerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VendorType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VendorType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Place)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Place)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DOB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GSTNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GSTNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TINNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TINNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PANNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PANNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CINNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CINNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdhaarNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdhaarNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpeningBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpeningBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpeningBalanceType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpeningBalanceType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpeningBalanceDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpeningBalanceDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditLimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreditLimit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditPeriod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreditPeriod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditInterestRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreditInterestRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DebitInterestRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DebitInterestRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDatetime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDatetime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remark)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SuretyPerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SuretyPerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SuretyPersonContactNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SuretyPersonContactNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SuretyPersonAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SuretyPersonAddress)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

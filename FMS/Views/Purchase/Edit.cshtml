@@ -1,0 +1,239 @@
+﻿@model FMS.tbl_Purchase
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ 
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+
+    
+        <div class="col-md-12 " style="padding-top: 20px;">
+            <div class="col-md-5">
+                <h4> <strong>Edit Purchase </strong></h4>
+            </div>
+            <div class="col-md-offset-8">
+                Purchase ID :  @Model.ID <br />
+                Created on :  @Model.CreatedDatetime
+            </div>
+            <hr />
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="col-xs-12">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PurchaseBook, htmlAttributes: new { @class = "control-label col-xs-4" })
+                    <div class="col-xs-8">
+                        @Html.EditorFor(model => model.PurchaseBook, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PurchaseBook, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PartyInvoiceDate, htmlAttributes: new { @class = "control-label col-xs-4" })
+                    <div class="col-xs-8">
+                        @Html.EditorFor(model => model.PartyInvoiceDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PartyInvoiceDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PartyInvoiceNo, htmlAttributes: new { @class = "control-label col-xs-4" })
+                    <div class="col-xs-8">
+                        @Html.EditorFor(model => model.PartyInvoiceNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PartyInvoiceNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PartyName, "Party Name", htmlAttributes: new { @class = "control-label col-xs-4" })
+                    <div class="col-xs-8">
+                        @Html.DropDownList("PartyName", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PartyName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6">
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.ID, "Purchase ID", htmlAttributes: new { @class = "control-label col-xs-4" })
+                    <div class="col-xs-8">
+
+                        ID :  @Model.ID
+
+                        Created on :  @Model.CreatedDatetime
+                    </div>
+                </div>*@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PurchaseDate, htmlAttributes: new { @class = "control-label col-xs-4" })
+                    <div class="col-xs-8">
+                        @Html.EditorFor(model => model.PurchaseDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PurchaseDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PaymentDueAfter, htmlAttributes: new { @class = "control-label col-xs-4" })
+                    <div class="col-xs-8">
+                        @Html.EditorFor(model => model.PaymentDueAfter, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PaymentDueAfter, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ReverseCharge, htmlAttributes: new { @class = "control-label col-xs-4" })
+                    <div class="col-xs-8">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.ReverseCharge)
+                            @Html.ValidationMessageFor(model => model.ReverseCharge, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12">
+            <hr />
+
+            <div class=" ">
+                <span> Items List  </span>
+                <button id="AddNewItem" class="AddNewItem btn btn-danger floatRight" type="button">
+                    +
+                </button>
+            </div>
+            <div id="divLoadItems" style="overflow:auto">
+                @Html.Partial("LoadItems", Model.tbl_ItemStock.ToList())
+
+            </div>
+        </div>
+
+      
+
+        <div class="col-xs-12 ">
+            <hr />
+            <div class="col-xs-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Remark, htmlAttributes: new { @class = "control-label col-xs-4 lableStyle" })
+                    @Html.TextAreaFor(model => model.Remark, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DiscountAmount, htmlAttributes: new { @class = "control-label col-xs-4 lableStyle" })
+                    @Html.EditorFor(model => model.DiscountAmount, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.ValidationMessageFor(model => model.DiscountAmount, "", new { @class = "text-danger" })*@
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.OtherCharge, htmlAttributes: new { @class = "control-label col-xs-4 lableStyle" })
+
+                    @Html.EditorFor(model => model.OtherCharge, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OtherCharge, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TotalAmountBeforeTax, htmlAttributes: new { @class = "control-label col-xs-4 lableStyle" })
+
+                    @Html.EditorFor(model => model.TotalAmountBeforeTax, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TotalAmountBeforeTax, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TaxAmount, htmlAttributes: new { @class = "control-label col-xs-4 lableStyle" })
+
+                    @Html.EditorFor(model => model.TaxAmount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TaxAmount, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TotalAmountAfterTax, htmlAttributes: new { @class = "control-label col-xs-4 lableStyle" })
+
+                    @Html.EditorFor(model => model.TotalAmountAfterTax, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TotalAmountAfterTax, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RoundOff, htmlAttributes: new { @class = "control-label col-xs-4 lableStyle" })
+
+                    @Html.EditorFor(model => model.RoundOff, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RoundOff, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GrandTotal, htmlAttributes: new { @class = "control-label col-xs-4 lableStyle" })
+                    @Html.EditorFor(model => model.GrandTotal, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.GrandTotal, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentMode, "PaymentMode", htmlAttributes: new { @class = "control-label col-xs-4" })
+            <div class="col-xs-8">
+                @Html.DropDownList("PaymentMode", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PaymentMode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-xs-8">
+                <input type="submit" value="Create" class="btn btn-default" />
+                <button type="button" id="BtnCreatePurchase" class="btncorner btn btn-danger" style="border-radius: 5px;">CREATE</button>
+            </div>
+        </div>
+    </div>
+
+    
+    }
+    <div id="divCreateLocationPopUPHolder" class="" role="group" aria-labelledby="dLabel">
+        <div id="divCreateLocationPopUP">
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    <script>
+    $(".AddNewItem").click(
+        function (id) {
+            //debugger;
+            var PurchaseID = '@ViewBag.ID';
+            if (PurchaseID == 'undefined' || PurchaseID == 1) { alert("Purchase ID is missing!") }
+            else {
+                LoadCreateLocationPopUP(PurchaseID);
+            }
+        });
+
+    function LoadCreateLocationPopUP(PurchaseID) {
+        //debugger;
+        var divPopUP = $('#divCreateLocationPopUP');
+        var strURL = '/Purchase/CreateItemList';
+        $.ajax({
+            data: { "PurchaseID": PurchaseID },
+            datatype: 'json',
+            url: strURL,
+            type: 'GET',
+            cache: false,
+            context: divPopUP,
+            success: function (result) {
+
+                if (result == "")
+                { alert("Data service connectivity error."); }
+                else {
+                    this.html(result);
+                    $('#createItemListModal').modal('show');
+
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //debugger;;
+                alert("Error : " + xhr.responseText);
+
+            }
+        });
+    }
+    </script>

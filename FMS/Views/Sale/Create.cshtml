@@ -1,0 +1,328 @@
+﻿@model FMS.tbl_Sale
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /*.container {
+        width: 100% !important;
+    }*/
+</style>
+
+@using (Html.BeginForm(null, null, FormMethod.Get, new { id = "FormSales" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="col-md-12 " style="padding-top: 20px;">
+            <div class="col-md-5">
+                <h4> <strong> Add Sales </strong></h4>
+            </div>
+            <div class="col-md-offset-8">
+                Sales ID :  @ViewBag.SaleID <br />
+                Created on :  @ViewBag.CreatedDatetime
+            </div>
+            <hr />
+        </div>
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.Hidden("SaleID", null, htmlAttributes: new { @class = "form-control" })
+        @Html.Hidden("CreatedDatetime", null, htmlAttributes: new { @class = "form-control" })
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.InvoiceID, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="control-label col-md-8" style="text-align: left;">
+                        @ViewBag.InvoiceID
+                        @Html.Hidden("InvoiceID", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.InvoiceDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.InvoiceDate, new { htmlAttributes = new { @class = "form-control", @Type = "date" } })
+                        @Html.ValidationMessageFor(model => model.InvoiceDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CustomerID, "CustomerID", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.DropDownList("CustomerID", null, "Please select", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ReverseCharge, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.ReverseCharge, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ReverseCharge, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <hr />
+            <div class="">
+                <span> Items List  </span>
+                <button id="CreateNewItem" class="CreateNewItem btn btn-danger" type="button">
+                    +
+                </button>
+
+            </div>
+            <div id="divLoadItems" style="overflow:auto">
+                @Html.Partial("LoadItems")
+            </div>
+        </div>
+
+
+        <div class="col-md-12 ">
+            <hr />
+            <div class="col-md-3 ">
+                <div class="form-group noPadding">
+                    @Html.LabelFor(model => model.Remark, htmlAttributes: new { @class = "control-label col-md-5  lableStyle" })
+                    <div class="col-md-8">
+                        @Html.TextAreaFor(model => model.Remark, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DiscountAfterTax, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.DiscountAfterTax, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DiscountAfterTax, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.OtherChargeAfterTax, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.OtherChargeAfterTax, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.OtherChargeAfterTax, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SubTotal, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.SubTotal, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SubTotal, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Tax, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Tax, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Tax, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TotalValueafterTax, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.TotalValueafterTax, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TotalValueafterTax, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GrandTotal, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.GrandTotal, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GrandTotal, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-8">
+                @*<input type="submit" value="Create" class="btn btn-default" />*@
+                <button type="button" id="BtnCreatePurchase" class="btncorner btn btn-danger" style="border-radius: 5px;">CREATE</button>
+            </div>
+        </div>
+    </div>
+}
+<div id="divCreateLocationPopUPHolder" class="" role="group" aria-labelledby="dLabel">
+    <div id="divCreateLocationPopUP">
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<script>
+
+     $(".CreateNewItem").click(
+        function (id) {
+            debugger;
+            var InvoiceID = '@ViewBag.InvoiceID';
+            if (InvoiceID == "") {
+                alert("Party Invoice No is missing ! ")
+                $("#InvoiceID").focus();
+                $("#InvoiceID").css("border-color", "#FF0000");
+                return;
+            }
+            var SalesID = '@ViewBag.SaleID';
+            if (SalesID == 'undefined' || SalesID == 1)
+            {
+                alert("Purchase ID is missing!");
+                return;
+            }
+            else {
+                LoadCreateItemListPopUP(SalesID, InvoiceID);
+            }
+        });
+
+    function LoadCreateItemListPopUP(SalesID, InvoiceID) {
+        debugger;
+        var divPopUP = $('#divCreateLocationPopUP');
+        var strURL = '/Sale/CreateItemList';
+        $.ajax({
+            data: { "SalesID": SalesID, "InvoiceNo": InvoiceID },
+            datatype: 'json',
+            url: strURL,
+            type: 'GET',
+            cache: false,
+            context: divPopUP,
+            success: function (result) {
+
+                if (result == "")
+                { alert("Data service connectivity error."); }
+                else {
+                    this.html(result);
+                    $('#createItemListModal').modal('show');
+
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //debugger;;
+                alert("Error : " + xhr.responseText);
+
+            }
+        });
+    }
+
+
+    function AddItemToSession(data) {
+        //debugger;
+        var strURL = '/Sale/AddItemToSession';
+        $.ajax({
+            data: { request: JSON.stringify(data) },
+            datatype: 'json',
+            url: strURL,
+            type: 'POST',
+            success: function (response) {
+                //debugger;
+
+                $('#createItemListModal').modal('hide');
+                LoadPurchaseItemsView();
+                LoadTotalData(response.total)
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                // debugger;
+                alert("Error : " + xhr.responseText + thrownError);
+                //$.unblockUI();
+
+            }
+
+        });
+    }
+
+    function LoadPurchaseItemsView() {
+        //modalBlock();
+        var divPopUP = $('#divLoadItems');
+
+        $.ajax({
+            type: "POST",
+            datatype: 'json',
+            url: '/Sale/LoadItems',
+            cache: false,
+            context: divPopUP, // document.body,
+            //data: { "StoreIdName": qsStore },
+            success: function (data) {
+                $(this).html(data);
+            }, error: function (xhr, ajaxOptions, thrownError) {
+                //debugger;;
+                alert("Error : " + xhr.responseText);
+                //$.unblockUI();
+            }
+        });
+
+    }
+
+    function LoadTotalData(data) {
+        /*debugger*/;
+        $("#SubTotal").val(data.TotalAmountBeforeTax);
+        $("#Tax").val(data.TaxAmount);
+        $("#TotalValueafterTax").val(data.TotalAmountAfterTax);
+        //$("#RoundOff").val(0);
+        $("#GrandTotal").val(data.TotalAmountAfterTax);
+
+    }
+
+    $("#BtnCreatePurchase").click(
+        function (id) {
+            debugger;
+
+
+            if ($('#CustomerID').val() == "") {
+                $("#CustomerID").focus();
+                $("#CustomerID").css("border-color", "#FF0000");
+                return false;
+            }
+             
+            if ($('#InvoiceDate').val() == "") {
+                $("#InvoiceDate").focus();
+                $("#InvoiceDate").css("border-color", "#FF0000");
+                return false;
+            }
+ 
+
+            //var d1 = $('#FormPurchase').serialize();
+            //var data1 = $('#FormPurchase').serializeArray();
+            var data = $('#FormSales').serializeArray().reduce(function (obj, item) {
+                obj[item.name] = item.value;
+
+                return obj;
+            }, {});
+
+            AddPurchase(data);
+
+        });
+
+    function AddPurchase(data) {
+        /*debugger*/;
+        var strURL = '/Sale/AddPurchase/';
+        $.ajax({
+            data: { request: JSON.stringify(data) },
+            datatype: 'json',
+            url: strURL,
+            type: 'POST',
+            error: function (xhr, ajaxOptions, thrownError) {
+                 /*debugger*/;
+                alert("Error : " + xhr.responseText.match(/.*<title.*>(.*)<\/title>.*/) + thrownError);
+                alert("Error : " + thrownError);
+
+
+            }
+
+        });
+    }
+
+</script>

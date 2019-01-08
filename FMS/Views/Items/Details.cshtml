@@ -1,0 +1,115 @@
+﻿@model FMS.tbl_Items
+
+@{
+    ViewBag.Title = "Items Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>View Items</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HSN_SAC_NO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HSN_SAC_NO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Manufacture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Manufacture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BarCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BarCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemUniqueDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemUniqueDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UseBatchNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UseBatchNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UseMfgDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UseMfgDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UseExpiryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UseExpiryDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_ItemType.ItemType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_ItemType.ItemType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_ItemUnits.MeasuringUnits)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_ItemUnits.MeasuringUnits)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_vendor.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_vendor.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

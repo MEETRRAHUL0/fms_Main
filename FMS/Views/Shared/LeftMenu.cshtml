@@ -1,0 +1,71 @@
+﻿@model IEnumerable<FMS.Models.MenuItem>
+
+
+
+
+<div id='cssmenu'>
+    <ul>
+        @foreach (var menu in Model)
+        {
+            if (menu.childItems.Any())
+            {
+                <li class='has-sub'>
+                    <span class="submenu-button"></span><a href='@menu.path'><i class="@menu.icon"></i> @menu.displayName @*<span class="caret"></span>*@</a>
+                    <ul>
+                        @foreach (var subMenu in menu.childItems)
+                        {
+                            if (subMenu.childItems.Any())
+                            {
+                                <li class='has-sub'>
+                                    <span class="submenu-button"></span><a href='@subMenu.path'><i class="@subMenu.icon"></i> @subMenu.displayName @*<span class="caret"></span>*@</a>
+                                    <ul>
+                                        @foreach (var subMenu2 in subMenu.childItems)
+                                        {
+                                            <li class=''>
+                                                <span class="submenu-button"></span><a href='@subMenu2.path'><i class="@subMenu2.icon"></i> @subMenu2.displayName</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class=''>
+                                    <span class="submenu-button"></span><a href='@subMenu.path'><i class="@subMenu.icon"></i> @subMenu.displayName</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li><a href='#'><i class="fa fa-fw fa-bars"></i>@menu.displayName</a></li>
+            }
+        }
+    </ul>
+</div>
+
+
+
+@*<div id="cssmenu" >
+        <div id="menu-button" class="">Menu</div>
+        <ul style="display: none;" class="">
+            <li><a href="#"><i class="fa fa-fw fa-home"></i> Home</a></li>
+            <li class="has-sub">
+                <span class="submenu-button"></span><a href="#"><i class="fa fa-fw fa-bars"></i> Menus</a>
+                <ul style="display: none;">
+                    <li class="has-sub">
+                        <span class="submenu-button"></span><a href="#">Menu 1</a>
+                        <ul style="display: none;">
+                            <li><a href="#">Menu 1.1</a></li>
+                            <li><a href="#">Menu 1.2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Menu 2</a></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class="fa fa-fw fa-cog"></i> Settings</a></li>
+            <li><a href="#"><i class="fa fa-fw fa-phone"></i> Contact</a></li>
+        </ul>
+    </div>*@

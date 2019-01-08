@@ -1,0 +1,1600 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FMSExpModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_GST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GST" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SGST" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CGST" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IGST" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Items">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="HSN_SAC_NO" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="int" />
+          <Property Name="MeasuringUnit" Type="int" />
+          <Property Name="Manufacture" Type="nvarchar" MaxLength="100" />
+          <Property Name="BarCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="ItemUniqueDescription" Type="nvarchar" MaxLength="100" />
+          <Property Name="Supplier" Type="nvarchar" MaxLength="50" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="50" />
+          <Property Name="UseBatchNo" Type="bit" />
+          <Property Name="UseMfgDate" Type="bit" />
+          <Property Name="UseExpiryDate" Type="bit" />
+          <Property Name="CreatedDatetime" Type="date" />
+          <Property Name="GST" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_ItemStock">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StockType" Type="nvarchar" MaxLength="50" />
+          <Property Name="PurchaseID" Type="nvarchar" MaxLength="50" />
+          <Property Name="SaleID" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvoiceNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ItemID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="PricePerUnit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ItemwiseDiscount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PricePerUnitAfterDiscount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPriceBeforeTax" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SGST" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CGST" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IGST" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GST" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPriceAfterTax" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MRP" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ManufactureDate" Type="date" />
+          <Property Name="Expirydate" Type="date" />
+          <Property Name="BatchNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDatetime" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_ItemType">
+          <Key>
+            <PropertyRef Name="ItemTypeId" />
+          </Key>
+          <Property Name="ItemTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_ItemUnits">
+          <Key>
+            <PropertyRef Name="MeasurintUnitID" />
+          </Key>
+          <Property Name="MeasurintUnitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MeasuringUnits" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_PaymentMode">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Purchase">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PartyInvoiceDate" Type="date" />
+          <Property Name="PurchaseDate" Type="date" />
+          <Property Name="PartyInvoiceNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="PartyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PaymentDueAfter" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReverseCharge" Type="bit" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+          <Property Name="DiscountAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OtherCharge" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalAmountBeforeTax" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TaxAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalAmountAfterTax" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="RoundOff" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GrandTotal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PurchaseBook" Type="int" />
+          <Property Name="PaymentMode" Type="int" />
+          <Property Name="ScanCopy" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDatetime" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Sale">
+          <Key>
+            <PropertyRef Name="SaleID" />
+          </Key>
+          <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SaleID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="InvoiceID" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvoiceDate" Type="datetime" />
+          <Property Name="CustomerID" Type="nvarchar" MaxLength="50" />
+          <Property Name="DiscountAfterTax" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OtherChargeAfterTax" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SubTotal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Tax" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalValueafterTax" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="RoundOff" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GrandTotal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CreatedDatetime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReverseCharge" Type="bit" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tbl_Sequence">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PreFix" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RecordCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Transaction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VendorID" Type="nvarchar" MaxLength="50" />
+          <Property Name="PurchaseID" Type="nvarchar" MaxLength="50" />
+          <Property Name="SalesID" Type="nvarchar" MaxLength="50" />
+          <Property Name="EntryID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="EntryType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDatetime" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransactionType" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransactionRef" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_vendor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="ContactPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="VendorType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Place" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="nvarchar" MaxLength="50" />
+          <Property Name="GSTNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="TINNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="PANNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="CINNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdhaarNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="OpeningBalance" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OpeningBalanceType" Type="nvarchar" MaxLength="50" />
+          <Property Name="OpeningBalanceDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreditLimit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CreditPeriod" Type="int" />
+          <Property Name="CreditInterestRate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DebitInterestRate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CreatedDatetime" Type="nvarchar" MaxLength="50" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="100" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+          <Property Name="SuretyPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="SuretyPersonContactNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="SuretyPersonAddress" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tbl_VendorAddress">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="vendorID" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddressType" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddLine1" Type="nvarchar" MaxLength="100" />
+          <Property Name="AddLine2" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="PinCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactNo" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_vendorType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblMenu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="icon" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" />
+          <Property Name="ordinal" Type="int" Nullable="false" />
+          <Property Name="path" Type="nvarchar" MaxLength="500" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="IsEnable" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FMSExp.dbo.vw_StockAvailable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_StockAvailable">
+          <Key>
+            <PropertyRef Name="StockIn" />
+            <PropertyRef Name="StockOut" />
+            <PropertyRef Name="HSN_SAC_NO" />
+          </Key>
+          <Property Name="StockIn" Type="int" Nullable="false" />
+          <Property Name="StockOut" Type="int" Nullable="false" />
+          <Property Name="StockAvailable" Type="int" />
+          <Property Name="ItemsID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="HSN_SAC_NO" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FMSExp.dbo.vw_StockAvailableold' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_StockAvailableold">
+          <Key>
+            <PropertyRef Name="ItemsID" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="StockIn" Type="int" />
+          <Property Name="StockOut" Type="int" />
+          <Property Name="AvailableStock" Type="int" />
+          <Property Name="ItemsID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="HSN_SAC_NO" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FMSExp.dbo.vw_StockDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_StockDetails">
+          <Key>
+            <PropertyRef Name="ItemsID" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="StockType" Type="nvarchar" MaxLength="50" />
+          <Property Name="ItemsID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="PricePerUnit" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="ItemwiseDiscount" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="PricePerUnitAfterDiscount" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="TotalPriceBeforeTax" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="SGST" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="CGST" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="IGST" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="GST" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="TotalPriceAfterTax" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="MRP" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="HSN_SAC_NO" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="int" />
+          <Property Name="MeasuringUnit" Type="int" />
+          <Property Name="Manufacture" Type="nvarchar" MaxLength="100" />
+          <Property Name="BarCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="ItemUniqueDescription" Type="nvarchar" MaxLength="100" />
+          <Property Name="InvoiceNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="PurchaseID" Type="nvarchar" MaxLength="50" />
+          <Property Name="SaleID" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_StockExpirydetails">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="HSN_SAC_NO" Type="nvarchar" MaxLength="50" />
+          <Property Name="ItemType" Type="nvarchar" MaxLength="50" />
+          <Property Name="MeasuringUnits" Type="nvarchar" MaxLength="50" />
+          <Property Name="Supplier" Type="nvarchar" MaxLength="50" />
+          <Property Name="MeasuringUnit" Type="int" />
+          <Property Name="Expirydate" Type="date" />
+          <Property Name="BatchNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="StockType" Type="nvarchar" MaxLength="50" />
+          <Property Name="PurchaseID" Type="nvarchar" MaxLength="50" />
+          <Property Name="SaleID" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvoiceNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Qty" Type="int" />
+        </EntityType>
+        <Association Name="FK_tbl_Items_tbl_GST">
+          <End Role="tbl_GST" Type="Self.tbl_GST" Multiplicity="0..1" />
+          <End Role="tbl_Items" Type="Self.tbl_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_GST">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Items">
+              <PropertyRef Name="GST" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Items_tbl_ItemType">
+          <End Role="tbl_ItemType" Type="Self.tbl_ItemType" Multiplicity="0..1" />
+          <End Role="tbl_Items" Type="Self.tbl_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ItemType">
+              <PropertyRef Name="ItemTypeId" />
+            </Principal>
+            <Dependent Role="tbl_Items">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Items_tbl_ItemUnits">
+          <End Role="tbl_ItemUnits" Type="Self.tbl_ItemUnits" Multiplicity="0..1" />
+          <End Role="tbl_Items" Type="Self.tbl_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ItemUnits">
+              <PropertyRef Name="MeasurintUnitID" />
+            </Principal>
+            <Dependent Role="tbl_Items">
+              <PropertyRef Name="MeasuringUnit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Items_tbl_vendor">
+          <End Role="tbl_vendor" Type="Self.tbl_vendor" Multiplicity="0..1" />
+          <End Role="tbl_Items" Type="Self.tbl_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_vendor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Items">
+              <PropertyRef Name="Supplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ItemStock_tbl_Items">
+          <End Role="tbl_Items" Type="Self.tbl_Items" Multiplicity="0..1" />
+          <End Role="tbl_ItemStock" Type="Self.tbl_ItemStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Items">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_ItemStock">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ItemStock_tbl_Purchase">
+          <End Role="tbl_Purchase" Type="Self.tbl_Purchase" Multiplicity="0..1" />
+          <End Role="tbl_ItemStock" Type="Self.tbl_ItemStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Purchase">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_ItemStock">
+              <PropertyRef Name="PurchaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ItemStock_tbl_Sale">
+          <End Role="tbl_Sale" Type="Self.tbl_Sale" Multiplicity="0..1" />
+          <End Role="tbl_ItemStock" Type="Self.tbl_ItemStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Sale">
+              <PropertyRef Name="SaleID" />
+            </Principal>
+            <Dependent Role="tbl_ItemStock">
+              <PropertyRef Name="SaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Purchase_tbl_PaymentMode">
+          <End Role="tbl_PaymentMode" Type="Self.tbl_PaymentMode" Multiplicity="0..1" />
+          <End Role="tbl_Purchase" Type="Self.tbl_Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_PaymentMode">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Purchase">
+              <PropertyRef Name="PaymentMode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Purchase_tbl_vendor">
+          <End Role="tbl_vendor" Type="Self.tbl_vendor" Multiplicity="0..1" />
+          <End Role="tbl_Purchase" Type="Self.tbl_Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_vendor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Purchase">
+              <PropertyRef Name="PartyName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Sale_tbl_vendor">
+          <End Role="tbl_vendor" Type="Self.tbl_vendor" Multiplicity="0..1" />
+          <End Role="tbl_Sale" Type="Self.tbl_Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_vendor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Sale">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Transaction_tbl_Purchase">
+          <End Role="tbl_Purchase" Type="Self.tbl_Purchase" Multiplicity="0..1" />
+          <End Role="tbl_Transaction" Type="Self.tbl_Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Purchase">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Transaction">
+              <PropertyRef Name="PurchaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Transaction_tbl_Sale">
+          <End Role="tbl_Sale" Type="Self.tbl_Sale" Multiplicity="0..1" />
+          <End Role="tbl_Transaction" Type="Self.tbl_Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Sale">
+              <PropertyRef Name="SaleID" />
+            </Principal>
+            <Dependent Role="tbl_Transaction">
+              <PropertyRef Name="SalesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Transaction_tbl_vendor">
+          <End Role="tbl_vendor" Type="Self.tbl_vendor" Multiplicity="0..1" />
+          <End Role="tbl_Transaction" Type="Self.tbl_Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_vendor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Transaction">
+              <PropertyRef Name="VendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_vendor_tbl_vendorType">
+          <End Role="tbl_vendorType" Type="Self.tbl_vendorType" Multiplicity="0..1" />
+          <End Role="tbl_vendor" Type="Self.tbl_vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_vendorType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_vendor">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_VendorAddress_tbl_vendor">
+          <End Role="tbl_vendor" Type="Self.tbl_vendor" Multiplicity="0..1" />
+          <End Role="tbl_VendorAddress" Type="Self.tbl_VendorAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_vendor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_VendorAddress">
+              <PropertyRef Name="vendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FMSExpModelStoreContainer">
+          <EntitySet Name="tbl_GST" EntityType="Self.tbl_GST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Items" EntityType="Self.tbl_Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ItemStock" EntityType="Self.tbl_ItemStock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ItemType" EntityType="Self.tbl_ItemType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ItemUnits" EntityType="Self.tbl_ItemUnits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_PaymentMode" EntityType="Self.tbl_PaymentMode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Purchase" EntityType="Self.tbl_Purchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Sale" EntityType="Self.tbl_Sale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Sequence" EntityType="Self.tbl_Sequence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Transaction" EntityType="Self.tbl_Transaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_vendor" EntityType="Self.tbl_vendor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_VendorAddress" EntityType="Self.tbl_VendorAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_vendorType" EntityType="Self.tbl_vendorType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMenu" EntityType="Self.tblMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_StockAvailable" EntityType="Self.vw_StockAvailable" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_StockAvailable].[StockIn] AS [StockIn], 
+    [vw_StockAvailable].[StockOut] AS [StockOut], 
+    [vw_StockAvailable].[StockAvailable] AS [StockAvailable], 
+    [vw_StockAvailable].[ItemsID] AS [ItemsID], 
+    [vw_StockAvailable].[Name] AS [Name], 
+    [vw_StockAvailable].[HSN_SAC_NO] AS [HSN_SAC_NO]
+    FROM [dbo].[vw_StockAvailable] AS [vw_StockAvailable]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_StockAvailableold" EntityType="Self.vw_StockAvailableold" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_StockAvailableold].[StockIn] AS [StockIn], 
+    [vw_StockAvailableold].[StockOut] AS [StockOut], 
+    [vw_StockAvailableold].[AvailableStock] AS [AvailableStock], 
+    [vw_StockAvailableold].[ItemsID] AS [ItemsID], 
+    [vw_StockAvailableold].[Name] AS [Name], 
+    [vw_StockAvailableold].[HSN_SAC_NO] AS [HSN_SAC_NO]
+    FROM [dbo].[vw_StockAvailableold] AS [vw_StockAvailableold]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_StockDetails" EntityType="Self.vw_StockDetails" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_StockDetails].[StockType] AS [StockType], 
+    [vw_StockDetails].[ItemsID] AS [ItemsID], 
+    [vw_StockDetails].[Qty] AS [Qty], 
+    [vw_StockDetails].[PricePerUnit] AS [PricePerUnit], 
+    [vw_StockDetails].[ItemwiseDiscount] AS [ItemwiseDiscount], 
+    [vw_StockDetails].[PricePerUnitAfterDiscount] AS [PricePerUnitAfterDiscount], 
+    [vw_StockDetails].[TotalPriceBeforeTax] AS [TotalPriceBeforeTax], 
+    [vw_StockDetails].[SGST] AS [SGST], 
+    [vw_StockDetails].[CGST] AS [CGST], 
+    [vw_StockDetails].[IGST] AS [IGST], 
+    [vw_StockDetails].[GST] AS [GST], 
+    [vw_StockDetails].[TotalPriceAfterTax] AS [TotalPriceAfterTax], 
+    [vw_StockDetails].[MRP] AS [MRP], 
+    [vw_StockDetails].[Name] AS [Name], 
+    [vw_StockDetails].[HSN_SAC_NO] AS [HSN_SAC_NO], 
+    [vw_StockDetails].[Type] AS [Type], 
+    [vw_StockDetails].[MeasuringUnit] AS [MeasuringUnit], 
+    [vw_StockDetails].[Manufacture] AS [Manufacture], 
+    [vw_StockDetails].[BarCode] AS [BarCode], 
+    [vw_StockDetails].[ItemUniqueDescription] AS [ItemUniqueDescription], 
+    [vw_StockDetails].[InvoiceNo] AS [InvoiceNo], 
+    [vw_StockDetails].[PurchaseID] AS [PurchaseID], 
+    [vw_StockDetails].[SaleID] AS [SaleID]
+    FROM [dbo].[vw_StockDetails] AS [vw_StockDetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_StockExpirydetails" EntityType="Self.vw_StockExpirydetails" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_StockExpirydetails].[ID] AS [ID], 
+    [vw_StockExpirydetails].[Name] AS [Name], 
+    [vw_StockExpirydetails].[HSN_SAC_NO] AS [HSN_SAC_NO], 
+    [vw_StockExpirydetails].[ItemType] AS [ItemType], 
+    [vw_StockExpirydetails].[MeasuringUnits] AS [MeasuringUnits], 
+    [vw_StockExpirydetails].[Supplier] AS [Supplier], 
+    [vw_StockExpirydetails].[MeasuringUnit] AS [MeasuringUnit], 
+    [vw_StockExpirydetails].[Expirydate] AS [Expirydate], 
+    [vw_StockExpirydetails].[BatchNo] AS [BatchNo], 
+    [vw_StockExpirydetails].[StockType] AS [StockType], 
+    [vw_StockExpirydetails].[PurchaseID] AS [PurchaseID], 
+    [vw_StockExpirydetails].[SaleID] AS [SaleID], 
+    [vw_StockExpirydetails].[InvoiceNo] AS [InvoiceNo], 
+    [vw_StockExpirydetails].[Qty] AS [Qty]
+    FROM [dbo].[vw_StockExpirydetails] AS [vw_StockExpirydetails]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tbl_Items_tbl_GST" Association="Self.FK_tbl_Items_tbl_GST">
+            <End Role="tbl_GST" EntitySet="tbl_GST" />
+            <End Role="tbl_Items" EntitySet="tbl_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Items_tbl_ItemType" Association="Self.FK_tbl_Items_tbl_ItemType">
+            <End Role="tbl_ItemType" EntitySet="tbl_ItemType" />
+            <End Role="tbl_Items" EntitySet="tbl_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Items_tbl_ItemUnits" Association="Self.FK_tbl_Items_tbl_ItemUnits">
+            <End Role="tbl_ItemUnits" EntitySet="tbl_ItemUnits" />
+            <End Role="tbl_Items" EntitySet="tbl_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Items_tbl_vendor" Association="Self.FK_tbl_Items_tbl_vendor">
+            <End Role="tbl_vendor" EntitySet="tbl_vendor" />
+            <End Role="tbl_Items" EntitySet="tbl_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ItemStock_tbl_Items" Association="Self.FK_tbl_ItemStock_tbl_Items">
+            <End Role="tbl_Items" EntitySet="tbl_Items" />
+            <End Role="tbl_ItemStock" EntitySet="tbl_ItemStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ItemStock_tbl_Purchase" Association="Self.FK_tbl_ItemStock_tbl_Purchase">
+            <End Role="tbl_Purchase" EntitySet="tbl_Purchase" />
+            <End Role="tbl_ItemStock" EntitySet="tbl_ItemStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ItemStock_tbl_Sale" Association="Self.FK_tbl_ItemStock_tbl_Sale">
+            <End Role="tbl_Sale" EntitySet="tbl_Sale" />
+            <End Role="tbl_ItemStock" EntitySet="tbl_ItemStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Purchase_tbl_PaymentMode" Association="Self.FK_tbl_Purchase_tbl_PaymentMode">
+            <End Role="tbl_PaymentMode" EntitySet="tbl_PaymentMode" />
+            <End Role="tbl_Purchase" EntitySet="tbl_Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Purchase_tbl_vendor" Association="Self.FK_tbl_Purchase_tbl_vendor">
+            <End Role="tbl_vendor" EntitySet="tbl_vendor" />
+            <End Role="tbl_Purchase" EntitySet="tbl_Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Sale_tbl_vendor" Association="Self.FK_tbl_Sale_tbl_vendor">
+            <End Role="tbl_vendor" EntitySet="tbl_vendor" />
+            <End Role="tbl_Sale" EntitySet="tbl_Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Transaction_tbl_Purchase" Association="Self.FK_tbl_Transaction_tbl_Purchase">
+            <End Role="tbl_Purchase" EntitySet="tbl_Purchase" />
+            <End Role="tbl_Transaction" EntitySet="tbl_Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Transaction_tbl_Sale" Association="Self.FK_tbl_Transaction_tbl_Sale">
+            <End Role="tbl_Sale" EntitySet="tbl_Sale" />
+            <End Role="tbl_Transaction" EntitySet="tbl_Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Transaction_tbl_vendor" Association="Self.FK_tbl_Transaction_tbl_vendor">
+            <End Role="tbl_vendor" EntitySet="tbl_vendor" />
+            <End Role="tbl_Transaction" EntitySet="tbl_Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_vendor_tbl_vendorType" Association="Self.FK_tbl_vendor_tbl_vendorType">
+            <End Role="tbl_vendorType" EntitySet="tbl_vendorType" />
+            <End Role="tbl_vendor" EntitySet="tbl_vendor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_VendorAddress_tbl_vendor" Association="Self.FK_tbl_VendorAddress_tbl_vendor">
+            <End Role="tbl_vendor" EntitySet="tbl_vendor" />
+            <End Role="tbl_VendorAddress" EntitySet="tbl_VendorAddress" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FMSExpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_GST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SGST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CGST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IGST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Comment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Items" Relationship="Self.FK_tbl_Items_tbl_GST" FromRole="tbl_GST" ToRole="tbl_Items" />
+        </EntityType>
+        <EntityType Name="tbl_Items">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HSN_SAC_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="MeasuringUnit" Type="Int32" />
+          <Property Name="Manufacture" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BarCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ItemUniqueDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Supplier" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UseBatchNo" Type="Boolean" />
+          <Property Name="UseMfgDate" Type="Boolean" />
+          <Property Name="UseExpiryDate" Type="Boolean" />
+          <Property Name="CreatedDatetime" Type="DateTime" Precision="0" />
+          <Property Name="GST" Type="Int32" />
+          <NavigationProperty Name="tbl_GST" Relationship="Self.FK_tbl_Items_tbl_GST" FromRole="tbl_Items" ToRole="tbl_GST" />
+          <NavigationProperty Name="tbl_ItemType" Relationship="Self.FK_tbl_Items_tbl_ItemType" FromRole="tbl_Items" ToRole="tbl_ItemType" />
+          <NavigationProperty Name="tbl_ItemUnits" Relationship="Self.FK_tbl_Items_tbl_ItemUnits" FromRole="tbl_Items" ToRole="tbl_ItemUnits" />
+          <NavigationProperty Name="tbl_vendor" Relationship="Self.FK_tbl_Items_tbl_vendor" FromRole="tbl_Items" ToRole="tbl_vendor" />
+          <NavigationProperty Name="tbl_ItemStock" Relationship="Self.FK_tbl_ItemStock_tbl_Items" FromRole="tbl_Items" ToRole="tbl_ItemStock" />
+        </EntityType>
+        <EntityType Name="tbl_ItemStock">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StockType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PurchaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SaleID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ItemID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="PricePerUnit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ItemwiseDiscount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PricePerUnitAfterDiscount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPriceBeforeTax" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SGST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CGST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IGST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPriceAfterTax" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MRP" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ManufactureDate" Type="DateTime" Precision="0" />
+          <Property Name="Expirydate" Type="DateTime" Precision="0" />
+          <Property Name="BatchNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDatetime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbl_Items" Relationship="Self.FK_tbl_ItemStock_tbl_Items" FromRole="tbl_ItemStock" ToRole="tbl_Items" />
+          <NavigationProperty Name="tbl_Purchase" Relationship="Self.FK_tbl_ItemStock_tbl_Purchase" FromRole="tbl_ItemStock" ToRole="tbl_Purchase" />
+          <NavigationProperty Name="tbl_Sale" Relationship="Self.FK_tbl_ItemStock_tbl_Sale" FromRole="tbl_ItemStock" ToRole="tbl_Sale" />
+        </EntityType>
+        <EntityType Name="tbl_ItemType">
+          <Key>
+            <PropertyRef Name="ItemTypeId" />
+          </Key>
+          <Property Name="ItemTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Items" Relationship="Self.FK_tbl_Items_tbl_ItemType" FromRole="tbl_ItemType" ToRole="tbl_Items" />
+        </EntityType>
+        <EntityType Name="tbl_ItemUnits">
+          <Key>
+            <PropertyRef Name="MeasurintUnitID" />
+          </Key>
+          <Property Name="MeasurintUnitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MeasuringUnits" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Items" Relationship="Self.FK_tbl_Items_tbl_ItemUnits" FromRole="tbl_ItemUnits" ToRole="tbl_Items" />
+        </EntityType>
+        <EntityType Name="tbl_PaymentMode">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Purchase" Relationship="Self.FK_tbl_Purchase_tbl_PaymentMode" FromRole="tbl_PaymentMode" ToRole="tbl_Purchase" />
+        </EntityType>
+        <EntityType Name="tbl_Purchase">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PartyInvoiceDate" Type="DateTime" Precision="0" />
+          <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
+          <Property Name="PartyInvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PartyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentDueAfter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReverseCharge" Type="Boolean" />
+          <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OtherCharge" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalAmountBeforeTax" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TaxAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalAmountAfterTax" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="RoundOff" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GrandTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PurchaseBook" Type="Int32" />
+          <Property Name="PaymentMode" Type="Int32" />
+          <Property Name="ScanCopy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDatetime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_ItemStock" Relationship="Self.FK_tbl_ItemStock_tbl_Purchase" FromRole="tbl_Purchase" ToRole="tbl_ItemStock" />
+          <NavigationProperty Name="tbl_PaymentMode" Relationship="Self.FK_tbl_Purchase_tbl_PaymentMode" FromRole="tbl_Purchase" ToRole="tbl_PaymentMode" />
+          <NavigationProperty Name="tbl_vendor" Relationship="Self.FK_tbl_Purchase_tbl_vendor" FromRole="tbl_Purchase" ToRole="tbl_vendor" />
+          <NavigationProperty Name="tbl_Transaction" Relationship="Self.FK_tbl_Transaction_tbl_Purchase" FromRole="tbl_Purchase" ToRole="tbl_Transaction" />
+        </EntityType>
+        <EntityType Name="tbl_Sale">
+          <Key>
+            <PropertyRef Name="SaleID" />
+          </Key>
+          <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaleID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InvoiceID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
+          <Property Name="CustomerID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountAfterTax" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OtherChargeAfterTax" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SubTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Tax" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalValueafterTax" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="RoundOff" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GrandTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CreatedDatetime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReverseCharge" Type="Boolean" />
+          <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_ItemStock" Relationship="Self.FK_tbl_ItemStock_tbl_Sale" FromRole="tbl_Sale" ToRole="tbl_ItemStock" />
+          <NavigationProperty Name="tbl_vendor" Relationship="Self.FK_tbl_Sale_tbl_vendor" FromRole="tbl_Sale" ToRole="tbl_vendor" />
+          <NavigationProperty Name="tbl_Transaction" Relationship="Self.FK_tbl_Transaction_tbl_Sale" FromRole="tbl_Sale" ToRole="tbl_Transaction" />
+        </EntityType>
+        <EntityType Name="tbl_Sequence">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PreFix" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RecordCount" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Transaction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VendorID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PurchaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SalesID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EntryID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EntryType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDatetime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionRef" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Purchase" Relationship="Self.FK_tbl_Transaction_tbl_Purchase" FromRole="tbl_Transaction" ToRole="tbl_Purchase" />
+          <NavigationProperty Name="tbl_Sale" Relationship="Self.FK_tbl_Transaction_tbl_Sale" FromRole="tbl_Transaction" ToRole="tbl_Sale" />
+          <NavigationProperty Name="tbl_Transaction1" Relationship="Self.FK_tbl_Transaction_tbl_Transaction" FromRole="tbl_Transaction" ToRole="tbl_Transaction1" />
+          <NavigationProperty Name="tbl_Transaction2" Relationship="Self.FK_tbl_Transaction_tbl_Transaction" FromRole="tbl_Transaction1" ToRole="tbl_Transaction" />
+          <NavigationProperty Name="tbl_Transaction11" Relationship="Self.FK_tbl_Transaction_tbl_Transaction1" FromRole="tbl_Transaction" ToRole="tbl_Transaction1" />
+          <NavigationProperty Name="tbl_Transaction3" Relationship="Self.FK_tbl_Transaction_tbl_Transaction1" FromRole="tbl_Transaction1" ToRole="tbl_Transaction" />
+          <NavigationProperty Name="tbl_vendor" Relationship="Self.FK_tbl_Transaction_tbl_vendor" FromRole="tbl_Transaction" ToRole="tbl_vendor" />
+        </EntityType>
+        <EntityType Name="tbl_vendor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VendorType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Place" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GSTNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TINNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PANNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CINNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdhaarNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OpeningBalance" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OpeningBalanceType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OpeningBalanceDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreditLimit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CreditPeriod" Type="Int32" />
+          <Property Name="CreditInterestRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DebitInterestRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CreatedDatetime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SuretyPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SuretyPersonContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SuretyPersonAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Items" Relationship="Self.FK_tbl_Items_tbl_vendor" FromRole="tbl_vendor" ToRole="tbl_Items" />
+          <NavigationProperty Name="tbl_Purchase" Relationship="Self.FK_tbl_Purchase_tbl_vendor" FromRole="tbl_vendor" ToRole="tbl_Purchase" />
+          <NavigationProperty Name="tbl_Sale" Relationship="Self.FK_tbl_Sale_tbl_vendor" FromRole="tbl_vendor" ToRole="tbl_Sale" />
+          <NavigationProperty Name="tbl_Transaction" Relationship="Self.FK_tbl_Transaction_tbl_vendor" FromRole="tbl_vendor" ToRole="tbl_Transaction" />
+          <NavigationProperty Name="tbl_vendorType" Relationship="Self.FK_tbl_vendor_tbl_vendorType" FromRole="tbl_vendor" ToRole="tbl_vendorType" />
+          <NavigationProperty Name="tbl_VendorAddress" Relationship="Self.FK_tbl_VendorAddress_tbl_vendor" FromRole="tbl_vendor" ToRole="tbl_VendorAddress" />
+        </EntityType>
+        <EntityType Name="tbl_VendorAddress">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="vendorID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddLine1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AddLine2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_vendor" Relationship="Self.FK_tbl_VendorAddress_tbl_vendor" FromRole="tbl_VendorAddress" ToRole="tbl_vendor" />
+        </EntityType>
+        <EntityType Name="tbl_vendorType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_vendor" Relationship="Self.FK_tbl_vendor_tbl_vendorType" FromRole="tbl_vendorType" ToRole="tbl_vendor" />
+        </EntityType>
+        <EntityType Name="tblMenu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ordinal" Type="Int32" Nullable="false" />
+          <Property Name="path" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <Property Name="IsEnable" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="vw_StockAvailable">
+          <Key>
+            <PropertyRef Name="StockIn" />
+            <PropertyRef Name="StockOut" />
+            <PropertyRef Name="HSN_SAC_NO" />
+          </Key>
+          <Property Name="StockIn" Type="Int32" Nullable="false" />
+          <Property Name="StockOut" Type="Int32" Nullable="false" />
+          <Property Name="StockAvailable" Type="Int32" />
+          <Property Name="ItemsID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HSN_SAC_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vw_StockAvailableold">
+          <Key>
+            <PropertyRef Name="ItemsID" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="StockIn" Type="Int32" />
+          <Property Name="StockOut" Type="Int32" />
+          <Property Name="AvailableStock" Type="Int32" />
+          <Property Name="ItemsID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HSN_SAC_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vw_StockDetails">
+          <Key>
+            <PropertyRef Name="ItemsID" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="StockType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ItemsID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="PricePerUnit" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="ItemwiseDiscount" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="PricePerUnitAfterDiscount" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="TotalPriceBeforeTax" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="SGST" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="CGST" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="IGST" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="GST" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="TotalPriceAfterTax" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="MRP" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HSN_SAC_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="MeasuringUnit" Type="Int32" />
+          <Property Name="Manufacture" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BarCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ItemUniqueDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PurchaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SaleID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vw_StockExpirydetails">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HSN_SAC_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ItemType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MeasuringUnits" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Supplier" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MeasuringUnit" Type="Int32" />
+          <Property Name="Expirydate" Type="DateTime" Precision="0" />
+          <Property Name="BatchNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StockType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PurchaseID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SaleID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qty" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_tbl_Items_tbl_GST">
+          <End Role="tbl_GST" Type="Self.tbl_GST" Multiplicity="0..1" />
+          <End Role="tbl_Items" Type="Self.tbl_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_GST">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Items">
+              <PropertyRef Name="GST" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Items_tbl_ItemType">
+          <End Role="tbl_ItemType" Type="Self.tbl_ItemType" Multiplicity="0..1" />
+          <End Role="tbl_Items" Type="Self.tbl_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ItemType">
+              <PropertyRef Name="ItemTypeId" />
+            </Principal>
+            <Dependent Role="tbl_Items">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Items_tbl_ItemUnits">
+          <End Role="tbl_ItemUnits" Type="Self.tbl_ItemUnits" Multiplicity="0..1" />
+          <End Role="tbl_Items" Type="Self.tbl_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ItemUnits">
+              <PropertyRef Name="MeasurintUnitID" />
+            </Principal>
+            <Dependent Role="tbl_Items">
+              <PropertyRef Name="MeasuringUnit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Items_tbl_vendor">
+          <End Role="tbl_vendor" Type="Self.tbl_vendor" Multiplicity="0..1" />
+          <End Role="tbl_Items" Type="Self.tbl_Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_vendor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Items">
+              <PropertyRef Name="Supplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ItemStock_tbl_Items">
+          <End Role="tbl_Items" Type="Self.tbl_Items" Multiplicity="0..1" />
+          <End Role="tbl_ItemStock" Type="Self.tbl_ItemStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Items">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_ItemStock">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ItemStock_tbl_Purchase">
+          <End Role="tbl_Purchase" Type="Self.tbl_Purchase" Multiplicity="0..1" />
+          <End Role="tbl_ItemStock" Type="Self.tbl_ItemStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Purchase">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_ItemStock">
+              <PropertyRef Name="PurchaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ItemStock_tbl_Sale">
+          <End Role="tbl_Sale" Type="Self.tbl_Sale" Multiplicity="0..1" />
+          <End Role="tbl_ItemStock" Type="Self.tbl_ItemStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Sale">
+              <PropertyRef Name="SaleID" />
+            </Principal>
+            <Dependent Role="tbl_ItemStock">
+              <PropertyRef Name="SaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Purchase_tbl_PaymentMode">
+          <End Role="tbl_PaymentMode" Type="Self.tbl_PaymentMode" Multiplicity="0..1" />
+          <End Role="tbl_Purchase" Type="Self.tbl_Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_PaymentMode">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Purchase">
+              <PropertyRef Name="PaymentMode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Purchase_tbl_vendor">
+          <End Role="tbl_vendor" Type="Self.tbl_vendor" Multiplicity="0..1" />
+          <End Role="tbl_Purchase" Type="Self.tbl_Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_vendor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Purchase">
+              <PropertyRef Name="PartyName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Transaction_tbl_Purchase">
+          <End Role="tbl_Purchase" Type="Self.tbl_Purchase" Multiplicity="0..1" />
+          <End Role="tbl_Transaction" Type="Self.tbl_Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Purchase">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Transaction">
+              <PropertyRef Name="PurchaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Sale_tbl_vendor">
+          <End Role="tbl_vendor" Type="Self.tbl_vendor" Multiplicity="0..1" />
+          <End Role="tbl_Sale" Type="Self.tbl_Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_vendor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Sale">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Transaction_tbl_Sale">
+          <End Role="tbl_Sale" Type="Self.tbl_Sale" Multiplicity="0..1" />
+          <End Role="tbl_Transaction" Type="Self.tbl_Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Sale">
+              <PropertyRef Name="SaleID" />
+            </Principal>
+            <Dependent Role="tbl_Transaction">
+              <PropertyRef Name="SalesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Transaction_tbl_Transaction">
+          <End Role="tbl_Transaction" Type="Self.tbl_Transaction" Multiplicity="1" />
+          <End Role="tbl_Transaction1" Type="Self.tbl_Transaction" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Transaction">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Transaction1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Transaction_tbl_Transaction1">
+          <End Role="tbl_Transaction" Type="Self.tbl_Transaction" Multiplicity="1" />
+          <End Role="tbl_Transaction1" Type="Self.tbl_Transaction" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Transaction">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Transaction1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Transaction_tbl_vendor">
+          <End Role="tbl_vendor" Type="Self.tbl_vendor" Multiplicity="0..1" />
+          <End Role="tbl_Transaction" Type="Self.tbl_Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_vendor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Transaction">
+              <PropertyRef Name="VendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_vendor_tbl_vendorType">
+          <End Role="tbl_vendorType" Type="Self.tbl_vendorType" Multiplicity="0..1" />
+          <End Role="tbl_vendor" Type="Self.tbl_vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_vendorType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_vendor">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_VendorAddress_tbl_vendor">
+          <End Role="tbl_vendor" Type="Self.tbl_vendor" Multiplicity="0..1" />
+          <End Role="tbl_VendorAddress" Type="Self.tbl_VendorAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_vendor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_VendorAddress">
+              <PropertyRef Name="vendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FMSExpEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_GST" EntityType="Self.tbl_GST" />
+          <EntitySet Name="tbl_Items" EntityType="Self.tbl_Items" />
+          <EntitySet Name="tbl_ItemStock" EntityType="Self.tbl_ItemStock" />
+          <EntitySet Name="tbl_ItemType" EntityType="Self.tbl_ItemType" />
+          <EntitySet Name="tbl_ItemUnits" EntityType="Self.tbl_ItemUnits" />
+          <EntitySet Name="tbl_PaymentMode" EntityType="Self.tbl_PaymentMode" />
+          <EntitySet Name="tbl_Purchase" EntityType="Self.tbl_Purchase" />
+          <EntitySet Name="tbl_Sale" EntityType="Self.tbl_Sale" />
+          <EntitySet Name="tbl_Sequence" EntityType="Self.tbl_Sequence" />
+          <EntitySet Name="tbl_Transaction" EntityType="Self.tbl_Transaction" />
+          <EntitySet Name="tbl_vendor" EntityType="Self.tbl_vendor" />
+          <EntitySet Name="tbl_VendorAddress" EntityType="Self.tbl_VendorAddress" />
+          <EntitySet Name="tbl_vendorType" EntityType="Self.tbl_vendorType" />
+          <EntitySet Name="tblMenus" EntityType="Self.tblMenu" />
+          <EntitySet Name="vw_StockAvailable" EntityType="Self.vw_StockAvailable" />
+          <EntitySet Name="vw_StockAvailableold" EntityType="Self.vw_StockAvailableold" />
+          <EntitySet Name="vw_StockDetails" EntityType="Self.vw_StockDetails" />
+          <EntitySet Name="vw_StockExpirydetails" EntityType="Self.vw_StockExpirydetails" />
+          <AssociationSet Name="FK_tbl_Items_tbl_GST" Association="Self.FK_tbl_Items_tbl_GST">
+            <End Role="tbl_GST" EntitySet="tbl_GST" />
+            <End Role="tbl_Items" EntitySet="tbl_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Items_tbl_ItemType" Association="Self.FK_tbl_Items_tbl_ItemType">
+            <End Role="tbl_ItemType" EntitySet="tbl_ItemType" />
+            <End Role="tbl_Items" EntitySet="tbl_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Items_tbl_ItemUnits" Association="Self.FK_tbl_Items_tbl_ItemUnits">
+            <End Role="tbl_ItemUnits" EntitySet="tbl_ItemUnits" />
+            <End Role="tbl_Items" EntitySet="tbl_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Items_tbl_vendor" Association="Self.FK_tbl_Items_tbl_vendor">
+            <End Role="tbl_vendor" EntitySet="tbl_vendor" />
+            <End Role="tbl_Items" EntitySet="tbl_Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ItemStock_tbl_Items" Association="Self.FK_tbl_ItemStock_tbl_Items">
+            <End Role="tbl_Items" EntitySet="tbl_Items" />
+            <End Role="tbl_ItemStock" EntitySet="tbl_ItemStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ItemStock_tbl_Purchase" Association="Self.FK_tbl_ItemStock_tbl_Purchase">
+            <End Role="tbl_Purchase" EntitySet="tbl_Purchase" />
+            <End Role="tbl_ItemStock" EntitySet="tbl_ItemStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ItemStock_tbl_Sale" Association="Self.FK_tbl_ItemStock_tbl_Sale">
+            <End Role="tbl_Sale" EntitySet="tbl_Sale" />
+            <End Role="tbl_ItemStock" EntitySet="tbl_ItemStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Purchase_tbl_PaymentMode" Association="Self.FK_tbl_Purchase_tbl_PaymentMode">
+            <End Role="tbl_PaymentMode" EntitySet="tbl_PaymentMode" />
+            <End Role="tbl_Purchase" EntitySet="tbl_Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Purchase_tbl_vendor" Association="Self.FK_tbl_Purchase_tbl_vendor">
+            <End Role="tbl_vendor" EntitySet="tbl_vendor" />
+            <End Role="tbl_Purchase" EntitySet="tbl_Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Transaction_tbl_Purchase" Association="Self.FK_tbl_Transaction_tbl_Purchase">
+            <End Role="tbl_Purchase" EntitySet="tbl_Purchase" />
+            <End Role="tbl_Transaction" EntitySet="tbl_Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Sale_tbl_vendor" Association="Self.FK_tbl_Sale_tbl_vendor">
+            <End Role="tbl_vendor" EntitySet="tbl_vendor" />
+            <End Role="tbl_Sale" EntitySet="tbl_Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Transaction_tbl_Sale" Association="Self.FK_tbl_Transaction_tbl_Sale">
+            <End Role="tbl_Sale" EntitySet="tbl_Sale" />
+            <End Role="tbl_Transaction" EntitySet="tbl_Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Transaction_tbl_Transaction" Association="Self.FK_tbl_Transaction_tbl_Transaction">
+            <End Role="tbl_Transaction" EntitySet="tbl_Transaction" />
+            <End Role="tbl_Transaction1" EntitySet="tbl_Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Transaction_tbl_Transaction1" Association="Self.FK_tbl_Transaction_tbl_Transaction1">
+            <End Role="tbl_Transaction" EntitySet="tbl_Transaction" />
+            <End Role="tbl_Transaction1" EntitySet="tbl_Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Transaction_tbl_vendor" Association="Self.FK_tbl_Transaction_tbl_vendor">
+            <End Role="tbl_vendor" EntitySet="tbl_vendor" />
+            <End Role="tbl_Transaction" EntitySet="tbl_Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_vendor_tbl_vendorType" Association="Self.FK_tbl_vendor_tbl_vendorType">
+            <End Role="tbl_vendorType" EntitySet="tbl_vendorType" />
+            <End Role="tbl_vendor" EntitySet="tbl_vendor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_VendorAddress_tbl_vendor" Association="Self.FK_tbl_VendorAddress_tbl_vendor">
+            <End Role="tbl_vendor" EntitySet="tbl_vendor" />
+            <End Role="tbl_VendorAddress" EntitySet="tbl_VendorAddress" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FMSExpModelStoreContainer" CdmEntityContainer="FMSExpEntities">
+          <EntitySetMapping Name="tbl_GST">
+            <EntityTypeMapping TypeName="FMSExpModel.tbl_GST">
+              <MappingFragment StoreEntitySet="tbl_GST">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="SGST" ColumnName="SGST" />
+                <ScalarProperty Name="CGST" ColumnName="CGST" />
+                <ScalarProperty Name="IGST" ColumnName="IGST" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Items">
+            <EntityTypeMapping TypeName="FMSExpModel.tbl_Items">
+              <MappingFragment StoreEntitySet="tbl_Items">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="HSN_SAC_NO" ColumnName="HSN_SAC_NO" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="MeasuringUnit" ColumnName="MeasuringUnit" />
+                <ScalarProperty Name="Manufacture" ColumnName="Manufacture" />
+                <ScalarProperty Name="BarCode" ColumnName="BarCode" />
+                <ScalarProperty Name="ItemUniqueDescription" ColumnName="ItemUniqueDescription" />
+                <ScalarProperty Name="Supplier" ColumnName="Supplier" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="UseBatchNo" ColumnName="UseBatchNo" />
+                <ScalarProperty Name="UseMfgDate" ColumnName="UseMfgDate" />
+                <ScalarProperty Name="UseExpiryDate" ColumnName="UseExpiryDate" />
+                <ScalarProperty Name="CreatedDatetime" ColumnName="CreatedDatetime" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ItemStock">
+            <EntityTypeMapping TypeName="FMSExpModel.tbl_ItemStock">
+              <MappingFragment StoreEntitySet="tbl_ItemStock">
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StockType" ColumnName="StockType" />
+                <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="PricePerUnit" ColumnName="PricePerUnit" />
+                <ScalarProperty Name="ItemwiseDiscount" ColumnName="ItemwiseDiscount" />
+                <ScalarProperty Name="PricePerUnitAfterDiscount" ColumnName="PricePerUnitAfterDiscount" />
+                <ScalarProperty Name="TotalPriceBeforeTax" ColumnName="TotalPriceBeforeTax" />
+                <ScalarProperty Name="SGST" ColumnName="SGST" />
+                <ScalarProperty Name="CGST" ColumnName="CGST" />
+                <ScalarProperty Name="IGST" ColumnName="IGST" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="TotalPriceAfterTax" ColumnName="TotalPriceAfterTax" />
+                <ScalarProperty Name="MRP" ColumnName="MRP" />
+                <ScalarProperty Name="ManufactureDate" ColumnName="ManufactureDate" />
+                <ScalarProperty Name="Expirydate" ColumnName="Expirydate" />
+                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+                <ScalarProperty Name="CreatedDatetime" ColumnName="CreatedDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ItemType">
+            <EntityTypeMapping TypeName="FMSExpModel.tbl_ItemType">
+              <MappingFragment StoreEntitySet="tbl_ItemType">
+                <ScalarProperty Name="ItemTypeId" ColumnName="ItemTypeId" />
+                <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ItemUnits">
+            <EntityTypeMapping TypeName="FMSExpModel.tbl_ItemUnits">
+              <MappingFragment StoreEntitySet="tbl_ItemUnits">
+                <ScalarProperty Name="MeasurintUnitID" ColumnName="MeasurintUnitID" />
+                <ScalarProperty Name="MeasuringUnits" ColumnName="MeasuringUnits" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_PaymentMode">
+            <EntityTypeMapping TypeName="FMSExpModel.tbl_PaymentMode">
+              <MappingFragment StoreEntitySet="tbl_PaymentMode">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Mode" ColumnName="Mode" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Purchase">
+            <EntityTypeMapping TypeName="FMSExpModel.tbl_Purchase">
+              <MappingFragment StoreEntitySet="tbl_Purchase">
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PartyInvoiceDate" ColumnName="PartyInvoiceDate" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="PartyInvoiceNo" ColumnName="PartyInvoiceNo" />
+                <ScalarProperty Name="PartyName" ColumnName="PartyName" />
+                <ScalarProperty Name="PaymentDueAfter" ColumnName="PaymentDueAfter" />
+                <ScalarProperty Name="ReverseCharge" ColumnName="ReverseCharge" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+                <ScalarProperty Name="OtherCharge" ColumnName="OtherCharge" />
+                <ScalarProperty Name="TotalAmountBeforeTax" ColumnName="TotalAmountBeforeTax" />
+                <ScalarProperty Name="TaxAmount" ColumnName="TaxAmount" />
+                <ScalarProperty Name="TotalAmountAfterTax" ColumnName="TotalAmountAfterTax" />
+                <ScalarProperty Name="RoundOff" ColumnName="RoundOff" />
+                <ScalarProperty Name="GrandTotal" ColumnName="GrandTotal" />
+                <ScalarProperty Name="PurchaseBook" ColumnName="PurchaseBook" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="ScanCopy" ColumnName="ScanCopy" />
+                <ScalarProperty Name="CreatedDatetime" ColumnName="CreatedDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Sale">
+            <EntityTypeMapping TypeName="FMSExpModel.tbl_Sale">
+              <MappingFragment StoreEntitySet="tbl_Sale">
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="DiscountAfterTax" ColumnName="DiscountAfterTax" />
+                <ScalarProperty Name="OtherChargeAfterTax" ColumnName="OtherChargeAfterTax" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="TotalValueafterTax" ColumnName="TotalValueafterTax" />
+                <ScalarProperty Name="RoundOff" ColumnName="RoundOff" />
+                <ScalarProperty Name="GrandTotal" ColumnName="GrandTotal" />
+                <ScalarProperty Name="CreatedDatetime" ColumnName="CreatedDatetime" />
+                <ScalarProperty Name="ReverseCharge" ColumnName="ReverseCharge" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Sequence">
+            <EntityTypeMapping TypeName="FMSExpModel.tbl_Sequence">
+              <MappingFragment StoreEntitySet="tbl_Sequence">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="PreFix" ColumnName="PreFix" />
+                <ScalarProperty Name="RecordCount" ColumnName="RecordCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Transaction">
+            <EntityTypeMapping TypeName="FMSExpModel.tbl_Transaction">
+              <MappingFragment StoreEntitySet="tbl_Transaction">
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+                <ScalarProperty Name="SalesID" ColumnName="SalesID" />
+                <ScalarProperty Name="EntryID" ColumnName="EntryID" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryType" ColumnName="EntryType" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedDatetime" ColumnName="CreatedDatetime" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="TransactionRef" ColumnName="TransactionRef" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_vendor">
+            <EntityTypeMapping TypeName="FMSExpModel.tbl_vendor">
+              <MappingFragment StoreEntitySet="tbl_vendor">
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="VendorType" ColumnName="VendorType" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="GSTNo" ColumnName="GSTNo" />
+                <ScalarProperty Name="TINNo" ColumnName="TINNo" />
+                <ScalarProperty Name="PANNo" ColumnName="PANNo" />
+                <ScalarProperty Name="CINNo" ColumnName="CINNo" />
+                <ScalarProperty Name="AdhaarNo" ColumnName="AdhaarNo" />
+                <ScalarProperty Name="OpeningBalance" ColumnName="OpeningBalance" />
+                <ScalarProperty Name="OpeningBalanceType" ColumnName="OpeningBalanceType" />
+                <ScalarProperty Name="OpeningBalanceDate" ColumnName="OpeningBalanceDate" />
+                <ScalarProperty Name="CreditLimit" ColumnName="CreditLimit" />
+                <ScalarProperty Name="CreditPeriod" ColumnName="CreditPeriod" />
+                <ScalarProperty Name="CreditInterestRate" ColumnName="CreditInterestRate" />
+                <ScalarProperty Name="DebitInterestRate" ColumnName="DebitInterestRate" />
+                <ScalarProperty Name="CreatedDatetime" ColumnName="CreatedDatetime" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="SuretyPerson" ColumnName="SuretyPerson" />
+                <ScalarProperty Name="SuretyPersonContactNo" ColumnName="SuretyPersonContactNo" />
+                <ScalarProperty Name="SuretyPersonAddress" ColumnName="SuretyPersonAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_VendorAddress">
+            <EntityTypeMapping TypeName="FMSExpModel.tbl_VendorAddress">
+              <MappingFragment StoreEntitySet="tbl_VendorAddress">
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="vendorID" ColumnName="vendorID" />
+                <ScalarProperty Name="AddressType" ColumnName="AddressType" />
+                <ScalarProperty Name="AddLine1" ColumnName="AddLine1" />
+                <ScalarProperty Name="AddLine2" ColumnName="AddLine2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_vendorType">
+            <EntityTypeMapping TypeName="FMSExpModel.tbl_vendorType">
+              <MappingFragment StoreEntitySet="tbl_vendorType">
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMenus">
+            <EntityTypeMapping TypeName="FMSExpModel.tblMenu">
+              <MappingFragment StoreEntitySet="tblMenu">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="icon" ColumnName="icon" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="ordinal" ColumnName="ordinal" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_StockAvailable">
+            <EntityTypeMapping TypeName="FMSExpModel.vw_StockAvailable">
+              <MappingFragment StoreEntitySet="vw_StockAvailable">
+                <ScalarProperty Name="StockIn" ColumnName="StockIn" />
+                <ScalarProperty Name="StockOut" ColumnName="StockOut" />
+                <ScalarProperty Name="StockAvailable" ColumnName="StockAvailable" />
+                <ScalarProperty Name="ItemsID" ColumnName="ItemsID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="HSN_SAC_NO" ColumnName="HSN_SAC_NO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_StockAvailableold">
+            <EntityTypeMapping TypeName="FMSExpModel.vw_StockAvailableold">
+              <MappingFragment StoreEntitySet="vw_StockAvailableold">
+                <ScalarProperty Name="StockIn" ColumnName="StockIn" />
+                <ScalarProperty Name="StockOut" ColumnName="StockOut" />
+                <ScalarProperty Name="AvailableStock" ColumnName="AvailableStock" />
+                <ScalarProperty Name="ItemsID" ColumnName="ItemsID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="HSN_SAC_NO" ColumnName="HSN_SAC_NO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_StockDetails">
+            <EntityTypeMapping TypeName="FMSExpModel.vw_StockDetails">
+              <MappingFragment StoreEntitySet="vw_StockDetails">
+                <ScalarProperty Name="StockType" ColumnName="StockType" />
+                <ScalarProperty Name="ItemsID" ColumnName="ItemsID" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="PricePerUnit" ColumnName="PricePerUnit" />
+                <ScalarProperty Name="ItemwiseDiscount" ColumnName="ItemwiseDiscount" />
+                <ScalarProperty Name="PricePerUnitAfterDiscount" ColumnName="PricePerUnitAfterDiscount" />
+                <ScalarProperty Name="TotalPriceBeforeTax" ColumnName="TotalPriceBeforeTax" />
+                <ScalarProperty Name="SGST" ColumnName="SGST" />
+                <ScalarProperty Name="CGST" ColumnName="CGST" />
+                <ScalarProperty Name="IGST" ColumnName="IGST" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="TotalPriceAfterTax" ColumnName="TotalPriceAfterTax" />
+                <ScalarProperty Name="MRP" ColumnName="MRP" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="HSN_SAC_NO" ColumnName="HSN_SAC_NO" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="MeasuringUnit" ColumnName="MeasuringUnit" />
+                <ScalarProperty Name="Manufacture" ColumnName="Manufacture" />
+                <ScalarProperty Name="BarCode" ColumnName="BarCode" />
+                <ScalarProperty Name="ItemUniqueDescription" ColumnName="ItemUniqueDescription" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_StockExpirydetails">
+            <EntityTypeMapping TypeName="FMSExpModel.vw_StockExpirydetails">
+              <MappingFragment StoreEntitySet="vw_StockExpirydetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="HSN_SAC_NO" ColumnName="HSN_SAC_NO" />
+                <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+                <ScalarProperty Name="MeasuringUnits" ColumnName="MeasuringUnits" />
+                <ScalarProperty Name="Supplier" ColumnName="Supplier" />
+                <ScalarProperty Name="MeasuringUnit" ColumnName="MeasuringUnit" />
+                <ScalarProperty Name="Expirydate" ColumnName="Expirydate" />
+                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+                <ScalarProperty Name="StockType" ColumnName="StockType" />
+                <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

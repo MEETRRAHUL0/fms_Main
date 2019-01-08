@@ -1,0 +1,153 @@
+﻿@model FMS.tbl_Purchase
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbl_Purchase</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PartyInvoiceDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartyInvoiceDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartyInvoiceNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartyInvoiceNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentDueAfter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentDueAfter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReverseCharge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReverseCharge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remark)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiscountAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiscountAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherCharge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherCharge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalAmountBeforeTax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalAmountBeforeTax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaxAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaxAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalAmountAfterTax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalAmountAfterTax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoundOff)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoundOff)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GrandTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GrandTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseBook)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseBook)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_PaymentMode.Mode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_PaymentMode.Mode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Supplier.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Supplier.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

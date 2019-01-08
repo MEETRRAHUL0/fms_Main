@@ -1,0 +1,54 @@
+﻿<link href="~/Content/TopBrandStyle.css" rel="stylesheet" />
+
+
+
+<div class=" example2">
+    <nav class="navbar navbar-default" style="margin: 0px;">
+        <div class="container-fluid" style="background: white;">
+            <div class="navbar-header">
+                @*<button type="button" id="btnmenu" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar2">*@
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar2" aria-expanded="false" aria-controls="navbar2">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*<a class="navbar-brand" href="#">*@
+                @*<img src="https://res.cloudinary.com/candidbusiness/image/upload/v1455406304/dispute-bills-chicago.png" alt="Dispute Bills">*@
+                <img src="~/Content/Images/KB.png" />
+                @*<img src="~/Content/Images/KbLogo.jpg" />*@
+                @*</a>*@
+            </div>
+            <div id="navbar2" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right" style="font-family:'Arial Black', Gadget, sans-serif;    font-weight: bolder;    font-size: x-large;">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Welcome User <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Account Setting</li>
+                            <li><a href="#">Setting</a></li>
+                            <li><a href="#">Rest Password</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+        <!--/.container-fluid -->
+    </nav>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+
+   
+</script>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5f26c6ca580143309c4312c1a1c1f38c" Name="Diagram1">
+        <EntityTypeShape EntityType="FMSExpModel.tbl_GST" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMSExpModel.tbl_Items" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMSExpModel.tbl_ItemStock" Width="1.5" PointX="10.5" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMSExpModel.tbl_ItemType" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMSExpModel.tbl_ItemUnits" Width="1.5" PointX="3" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMSExpModel.tbl_PaymentMode" Width="1.5" PointX="6" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMSExpModel.tbl_Purchase" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMSExpModel.tbl_Sale" Width="1.5" PointX="5.25" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMSExpModel.tbl_Sequence" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMSExpModel.tbl_Transaction" Width="1.5" PointX="13.5" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMSExpModel.tbl_vendor" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMSExpModel.tbl_VendorAddress" Width="1.5" PointX="5.25" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMSExpModel.tbl_vendorType" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMSExpModel.tblMenu" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMSExpModel.vw_StockAvailable" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMSExpModel.vw_StockAvailableold" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMSExpModel.vw_StockDetails" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMSExpModel.vw_StockExpirydetails" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="FMSExpModel.FK_tbl_Items_tbl_GST" ManuallyRouted="false" />
+        <AssociationConnector Association="FMSExpModel.FK_tbl_Items_tbl_ItemType" ManuallyRouted="false" />
+        <AssociationConnector Association="FMSExpModel.FK_tbl_Items_tbl_ItemUnits" ManuallyRouted="false" />
+        <AssociationConnector Association="FMSExpModel.FK_tbl_Items_tbl_vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="FMSExpModel.FK_tbl_ItemStock_tbl_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="FMSExpModel.FK_tbl_ItemStock_tbl_Purchase" ManuallyRouted="false" />
+        <AssociationConnector Association="FMSExpModel.FK_tbl_ItemStock_tbl_Sale" ManuallyRouted="false" />
+        <AssociationConnector Association="FMSExpModel.FK_tbl_Purchase_tbl_PaymentMode" ManuallyRouted="false" />
+        <AssociationConnector Association="FMSExpModel.FK_tbl_Purchase_tbl_vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="FMSExpModel.FK_tbl_Transaction_tbl_Purchase" ManuallyRouted="false" />
+        <AssociationConnector Association="FMSExpModel.FK_tbl_Sale_tbl_vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="FMSExpModel.FK_tbl_Transaction_tbl_Sale" ManuallyRouted="false" />
+        <AssociationConnector Association="FMSExpModel.FK_tbl_Transaction_tbl_Transaction" ManuallyRouted="false" />
+        <AssociationConnector Association="FMSExpModel.FK_tbl_Transaction_tbl_Transaction1" ManuallyRouted="false" />
+        <AssociationConnector Association="FMSExpModel.FK_tbl_Transaction_tbl_vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="FMSExpModel.FK_tbl_vendor_tbl_vendorType" ManuallyRouted="false" />
+        <AssociationConnector Association="FMSExpModel.FK_tbl_VendorAddress_tbl_vendor" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
