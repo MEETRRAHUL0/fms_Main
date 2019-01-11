@@ -115,7 +115,7 @@ namespace FMS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CustomerID = new SelectList(db.tbl_vendor, "CustomerID", "Name", tbl_Sale.CustomerID);
+            ViewBag.CustomerID = new SelectList(db.tbl_vendor, "ID", "Name", tbl_Sale.CustomerID);
             return View(tbl_Sale);
         }
 
@@ -151,7 +151,7 @@ namespace FMS.Controllers
             }
             else
             {
-                ViewBag.CustomerID = new SelectList(db.tbl_vendor, "CustomerID", "Name", tbl_Sale.CustomerID);
+                ViewBag.CustomerID = new SelectList(db.tbl_vendor, "ID", "Name", tbl_Sale.CustomerID);
                 throw new InvalidOperationException("Please add item to continue!!");
 
             }
@@ -170,7 +170,7 @@ namespace FMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CustomerID = new SelectList(db.tbl_vendor, "CustomerID", "Name", tbl_Sale.CustomerID);
+            ViewBag.CustomerID = new SelectList(db.tbl_vendor, "ID", "Name", tbl_Sale.CustomerID);
             return View(tbl_Sale);
         }
 
@@ -187,7 +187,7 @@ namespace FMS.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.CustomerID = new SelectList(db.tbl_vendor, "CustomerID", "Name", tbl_Sale.CustomerID);
+            ViewBag.CustomerID = new SelectList(db.tbl_vendor, "ID", "Name", tbl_Sale.CustomerID);
             return View(tbl_Sale);
         }
 

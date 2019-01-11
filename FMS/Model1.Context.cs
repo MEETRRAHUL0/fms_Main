@@ -30,6 +30,7 @@ namespace FMS
         public virtual DbSet<tbl_ItemStock> tbl_ItemStock { get; set; }
         public virtual DbSet<tbl_ItemType> tbl_ItemType { get; set; }
         public virtual DbSet<tbl_ItemUnits> tbl_ItemUnits { get; set; }
+        public virtual DbSet<tbl_Payment> tbl_Payment { get; set; }
         public virtual DbSet<tbl_PaymentMode> tbl_PaymentMode { get; set; }
         public virtual DbSet<tbl_Purchase> tbl_Purchase { get; set; }
         public virtual DbSet<tbl_Sale> tbl_Sale { get; set; }

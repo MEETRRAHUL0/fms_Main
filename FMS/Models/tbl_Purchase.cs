@@ -10,8 +10,8 @@ namespace FMS
     [MetadataType(typeof(tbl_PurchaseMetadata))]
     public partial class tbl_Purchase
     {
-        [NotMapped]
-        public int Amount { get; set; }
+        //[NotMapped]
+        public decimal Amount { get; set; }
     }
 
     public partial class tbl_PurchaseMetadata

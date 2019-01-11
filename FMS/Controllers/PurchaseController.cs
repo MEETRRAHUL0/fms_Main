@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using static FMS.Helper.EnumHelper;
 
 namespace FMS.Controllers
 {
@@ -193,72 +194,224 @@ namespace FMS.Controllers
 
         public ActionResult AddPurchase(string request)
         {
-            tbl_Purchase tbl_Purchase = JsonConvert.DeserializeObject<tbl_Purchase>(request);
-            if (PurchaseItemStock.Count > 0)
+            using (var transaction = db.Database.BeginTransaction()) // new System.Transactions.TransactionScope())
             {
-                var t = JsonConvert.SerializeObject(tbl_Purchase);
-
-                db.tbl_Purchase.Add(tbl_Purchase);
-
-                PurchaseItemStock.ForEach(q => q.tbl_Items = null);
-                db.tbl_ItemStock.AddRange(PurchaseItemStock);
-
-                tbl_Sequence NewSequenceValue = Helper.GenericHelper.GetNextUpdatedData("tbl_Purchase");
-                db.Entry(NewSequenceValue).State = EntityState.Modified;
-
-                tbl_Sequence NewSequenceValueItemStock = Helper.GenericHelper.GetNextUpdatedData("tbl_ItemStock");
-                db.Entry(NewSequenceValueItemStock).State = EntityState.Modified;
-
-                db.SaveChanges();
-
-                // 1 hold --  only save purchase & Item with status hold
-
-                // 2  CREDIT PURCHASE --  one transaction entry with credit (out) with unpaid status
-
-                // 3  CASH PAY  -- one transaction entry with credit (out)/ Paid
-                //             one payment Entry with full amount 
-                //             one transaction entry with Debit (in) with payment ID
-
-                // 4 MULTI MODE PAY -- one transaction entry with credit (out)
-                //             one payment Entry
-                //             one transaction entry with Debit (in)
-
-                if (tbl_Purchase.PaymentMode != 1)
+                tbl_Purchase tbl_Purchase = JsonConvert.DeserializeObject<tbl_Purchase>(request);
+                if (PurchaseItemStock.Count > 0)
                 {
-                    int amount = tbl_Purchase.Amount;
-                    tbl_Transaction tbl_Transaction = new tbl_Transaction()
+                    var t = JsonConvert.SerializeObject(tbl_Purchase);
+
+                    db.tbl_Purchase.Add(tbl_Purchase);
+
+                    PurchaseItemStock.ForEach(q => q.tbl_Items = null);
+                    db.tbl_ItemStock.AddRange(PurchaseItemStock);
+
+                    tbl_Sequence NewSequenceValue = Helper.GenericHelper.GetNextUpdatedData(SequenceTable.tbl_Purchase.ToString());
+                    db.Entry(NewSequenceValue).State = EntityState.Modified;
+
+                    tbl_Sequence NewSequenceValueItemStock = Helper.GenericHelper.GetNextUpdatedData(SequenceTable.tbl_ItemStock.ToString());
+                    db.Entry(NewSequenceValueItemStock).State = EntityState.Modified;
+
+                    //db.SaveChanges();
+
+                    // 1 hold --  only save purchase & Item with status hold
+
+                    // 2  CREDIT PURCHASE --  one transaction entry with credit (out) with unpaid status
+
+                    // 3  CASH PAY  -- one transaction entry with credit (out)/ Paid
+                    //             one payment Entry with full amount 
+                    //             one transaction entry with Debit (in) with payment ID
+
+                    // 4 MULTI MODE PAY -- one transaction entry with credit (out)
+                    //             one payment Entry
+                    //             one transaction entry with Debit (in)
+
+                    if (tbl_Purchase.PaymentMode.Value != PaymentMode.HOLD)  // not hold
                     {
-                        ID = Helper.GenericHelper.GetMaxValue("tbl_Transaction"),
 
-                        CreatedDatetime = tbl_Purchase.CreatedDatetime,
-                        EntryDate = tbl_Purchase.PurchaseDate.ToString(),
+                        decimal amount = tbl_Purchase.Amount;
+                        string creditTID = Helper.GenericHelper.GetMaxValue(SequenceTable.tbl_TransactionCredit.ToString());
 
-                        EntryType = EnumHelper.TransactionEntryType.Purchase.ToString(),  // "Purchase", // Purchase/Sales/Recipt/Payment
-                        Status = null,  ///Paid/Unpaid/Pending/Paid Against entries : // Recive  Against entries 
-                        TransactionType = null,  ///Debit/ credit --  For Real: Debit what comes in, credit what goes out.
-                        TransactionRef = null,
+                        var EntryType = TransactionEntryType.Purchase;
+                        var tt = PaymentMode.CASH_PAY;
+                        tbl_Transaction tbl_Transactioncredit = new tbl_Transaction()
+                        {
+                            ID = creditTID,
 
-                        EntryID = tbl_Purchase.ID,
-                        PurchaseID = tbl_Purchase.ID,
-                        SalesID = null,
+                            CreatedDatetime = tbl_Purchase.CreatedDatetime,
+                            EntryDate = tbl_Purchase.PurchaseDate.ToString(),
 
-                        Amount = amount,
+                            EntryType = TransactionEntryType.Purchase.ToString(),  //"Purchase", // Purchase/Sales/Recipt/Payment
+                            Status = TransactionStatus.Unpaid,  ///Paid/Unpaid/Pending/Paid Against entries : // Recive  Against entries 
+                            TransactionType = TransactionType.Credit.ToString(),  ///Debit/ credit --  For Real: Debit what comes in, credit what goes out.
+                            //TransactionRef = null,
 
-                        VendorID = tbl_Purchase.tbl_vendor.ID
+                            EntryID = tbl_Purchase.ID,
+                            PurchaseID = tbl_Purchase.ID,
+                            //SalesID = null,
 
-                    };
-                    db.Entry(tbl_Transaction).State = EntityState.Modified;
+                            Amount = tbl_Purchase.GrandTotal,
+
+                            VendorID = tbl_Purchase.PartyName
+
+                        };
+                        db.tbl_Transaction.Add(tbl_Transactioncredit);
+                        //db.SaveChanges();
+
+                        tbl_Sequence NewSequenceValuetbl_Transaction = Helper.GenericHelper.GetNextUpdatedData("tbl_TransactionCredit");
+                        db.Entry(NewSequenceValuetbl_Transaction).State = EntityState.Modified;
+
+                        //db.SaveChanges();
+                        if (tbl_Purchase.PaymentMode == 2)  //CREDIT PURCHASE
+                        {
+
+                        }
+                        else if (tbl_Purchase.PaymentMode == 3)  //CASH PAY
+                        {
+                            string tbl_PaymentID = Helper.GenericHelper.GetMaxValue("tbl_Payment");
+                            tbl_Payment tbl_Payment = new tbl_Payment()
+                            {
+                                ID = tbl_PaymentID,
+                                Amount = tbl_Purchase.GrandTotal,
+                                CreatedDatetime = tbl_Purchase.CreatedDatetime,
+
+                                PartyName = tbl_Purchase.PartyName,
+                                PaymentDate = tbl_Purchase.PurchaseDate.ToString(),
+                                PaymentMode = "CASH",
+                                //Remark = "",
+                                //TransactionID = creditTID,
+
+                            };
+                            db.tbl_Payment.Add(tbl_Payment);
+
+                            tbl_Sequence NewSequenceValuetbl_Payment = Helper.GenericHelper.GetNextUpdatedData("tbl_Payment");
+                            db.Entry(NewSequenceValuetbl_Payment).State = EntityState.Modified;
+                            //db.SaveChanges();
+
+                            tbl_Transaction tbl_TransactionDebit = new tbl_Transaction()
+                            {
+                                ID = Helper.GenericHelper.GetMaxValue("tbl_TransactionDebit"),
+
+                                CreatedDatetime = tbl_Purchase.CreatedDatetime,
+                                EntryDate = tbl_Purchase.PurchaseDate.ToString(),
+
+                                EntryType = TransactionEntryType.Purchase.ToString(),  // "Purchase", // Purchase/Sales/Recipt/Payment
+                                Status = TransactionStatus.PaidAgainstEntries + tbl_Purchase.ID,  ///Paid/Unpaid/Pending/Paid Against entries : // Recive  Against entries 
+                                TransactionType = TransactionType.Debit.ToString(),  ///Debit/ credit --  For Real: Debit what comes in, credit what goes out.
+                                TransactionRef = tbl_Purchase.ID,
+
+                                EntryID = tbl_PaymentID,
+                                //PurchaseID = null,
+                                //SalesID = null,
+                                PaymentID = tbl_PaymentID,
+
+                                Amount = tbl_Purchase.GrandTotal,
+
+                                VendorID = tbl_Purchase.PartyName
+
+                            };
+                            db.tbl_Transaction.Add(tbl_TransactionDebit);
+
+                            tbl_Sequence NewSequenceValuetbl_Transaction2 = Helper.GenericHelper.GetNextUpdatedData("tbl_TransactionDebit");
+                            db.Entry(NewSequenceValuetbl_Transaction2).State = EntityState.Modified;
+
+
+                            //db.SaveChanges();
+
+                            //var tbl_Transactionresult = db.tbl_Transaction.Where(q => q.ID == creditTID).FirstOrDefault();
+                            tbl_Transactioncredit.Status = TransactionStatus.Paid;
+                            //db.Entry(tbl_Transactionresult).State = EntityState.Modified;
+                            //db.SaveChanges();
+
+                        }
+                        else if (tbl_Purchase.PaymentMode == 4)  //MULTI MODE PAY
+                        {
+                            string tbl_PaymentID = Helper.GenericHelper.GetMaxValue("tbl_Payment");
+                            tbl_Payment tbl_Payment = new tbl_Payment()
+                            {
+                                ID = tbl_PaymentID,
+                                Amount = amount,
+                                CreatedDatetime = tbl_Purchase.CreatedDatetime,
+
+                                PartyName = tbl_Purchase.PartyName,
+                                PaymentDate = tbl_Purchase.PurchaseDate.ToString(),
+                                PaymentMode = "CASH",
+                                //Remark = "",
+                                //TransactionID = creditTID,
+
+                            };
+                            db.tbl_Payment.Add(tbl_Payment);
+
+                            tbl_Sequence NewSequenceValuetbl_Payment = Helper.GenericHelper.GetNextUpdatedData("tbl_Payment");
+                            db.Entry(NewSequenceValuetbl_Payment).State = EntityState.Modified;
+                            //db.SaveChanges();
+
+                            tbl_Transaction tbl_TransactionDebit = new tbl_Transaction()
+                            {
+                                ID = Helper.GenericHelper.GetMaxValue("tbl_TransactionDebit"),
+
+                                CreatedDatetime = tbl_Purchase.CreatedDatetime,
+                                EntryDate = tbl_Purchase.PurchaseDate.ToString(),
+
+                                EntryType = TransactionEntryType.Purchase.ToString(),  // "Purchase", // Purchase/Sales/Recipt/Payment
+                                Status = TransactionStatus.PaidAgainstEntries + tbl_Purchase.ID,  ///Paid/Unpaid/Pending/Paid Against entries : // Recive  Against entries 
+                                TransactionType = TransactionType.Debit.ToString(),  ///Debit/ credit --  For Real: Debit what comes in, credit what goes out.
+                                TransactionRef = tbl_Purchase.ID,
+
+                                EntryID = tbl_PaymentID,
+                                //PurchaseID = null,
+                                //SalesID = null,
+                                PaymentID = tbl_PaymentID,
+
+                                Amount = amount,
+
+                                VendorID = tbl_Purchase.PartyName
+
+                            };
+                            db.tbl_Transaction.Add(tbl_TransactionDebit);
+
+                            tbl_Sequence NewSequenceValuetbl_Transaction2 = Helper.GenericHelper.GetNextUpdatedData("tbl_TransactionDebit");
+                            db.Entry(NewSequenceValuetbl_Transaction2).State = EntityState.Modified;
+
+
+                        }
+
+
+                    }
+
+                    bool saved = false;
+
+                    try
+                    {
+                        db.SaveChanges();
+                        saved = true;
+                    }
+                    catch (Exception e)
+                    {
+                        throw new InvalidOperationException(e.Message);
+
+                    }
+                    finally
+                    {
+                        if (saved)
+                        {
+                            transaction.Commit();
+                        }
+                    }
+
+
+                    //if (tbl_Purchase.PaymentMode == 4)  //MULTI MODE PAY
+                    //    return JavaScript("window.location = '/purchase/index'");
+                    //else
+                        return JavaScript("window.location = '/purchase/index'");
+                }
+                else
+                {
+                    ViewBag.PaymentMode = new SelectList(db.tbl_PaymentMode, "ID", "Mode", tbl_Purchase.PaymentMode);
+                    ViewBag.PartyName = new SelectList(db.tbl_vendor, "ID", "Name", tbl_Purchase.PartyName);
+                    throw new InvalidOperationException("Please add item to continue!!");
 
                 }
-
-                return JavaScript("window.location = '/purchase/index'");
-            }
-            else
-            {
-                ViewBag.PaymentMode = new SelectList(db.tbl_PaymentMode, "ID", "Mode", tbl_Purchase.PaymentMode);
-                ViewBag.PartyName = new SelectList(db.tbl_vendor, "ID", "Name", tbl_Purchase.PartyName);
-                throw new InvalidOperationException("Please add item to continue!!");
-
             }
             //return RedirectToAction("Index");
         }

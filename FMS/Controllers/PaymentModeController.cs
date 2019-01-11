@@ -39,8 +39,6 @@ namespace FMS.Controllers
         // GET: PaymentMode/Create
         public ActionResult Create()
         {
-            ViewBag.ID = db.tbl_PaymentMode.Max(q => q.ID) + 1;
-            ViewBag.CreatedDatetime = DateTime.Now;
             return View();
         }
 
@@ -49,7 +47,7 @@ namespace FMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Mode")] tbl_PaymentMode tbl_PaymentMode)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Mode,Type,IsVisible")] tbl_PaymentMode tbl_PaymentMode)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +79,7 @@ namespace FMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Mode")] tbl_PaymentMode tbl_PaymentMode)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Mode,Type,IsVisible")] tbl_PaymentMode tbl_PaymentMode)
         {
             if (ModelState.IsValid)
             {

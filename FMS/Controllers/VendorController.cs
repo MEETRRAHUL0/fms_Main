@@ -39,6 +39,7 @@ namespace FMS.Controllers
         // GET: Vendor/Create
         public ActionResult Create()
         {
+            ViewBag.Type = new SelectList(db.tbl_vendorType, "ID", "Name");
             return View();
         }
 
@@ -47,6 +48,7 @@ namespace FMS.Controllers
         {
             ViewBag.VendorType = "Supplier";
             ViewBag.ID = Helper.GenericHelper.GetMaxValue("tbl_Supplier");
+            ViewBag.Type = new SelectList(db.tbl_vendorType, "ID", "Name");
             ViewBag.CreatedDatetime = DateTime.Now;
             return View("Create");
         }
@@ -56,6 +58,7 @@ namespace FMS.Controllers
         {
             ViewBag.VendorType = "Customer";
             ViewBag.ID = Helper.GenericHelper.GetMaxValue("tbl_Customer");
+            ViewBag.Type = new SelectList(db.tbl_vendorType, "ID", "Name");
             ViewBag.CreatedDatetime = DateTime.Now;
 
             return View("Create");
@@ -74,7 +77,7 @@ namespace FMS.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Type = new SelectList(db.tbl_vendorType, "ID", "Name", tbl_vendor.Type);
             return View(tbl_vendor);
         }
 
@@ -93,7 +96,7 @@ namespace FMS.Controllers
 
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Type = new SelectList(db.tbl_vendorType, "ID", "Name", tbl_vendor.Type);
             return View(tbl_vendor);
         }
 
@@ -113,7 +116,7 @@ namespace FMS.Controllers
 
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Type = new SelectList(db.tbl_vendorType, "ID", "Name", tbl_vendor.Type);
             return View(tbl_vendor);
         }
 
@@ -129,6 +132,7 @@ namespace FMS.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Type = new SelectList(db.tbl_vendorType, "ID", "Name", tbl_vendor.Type);
             return View(tbl_vendor);
         }
 
@@ -145,6 +149,7 @@ namespace FMS.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.Type = new SelectList(db.tbl_vendorType, "ID", "Name", tbl_vendor.Type);
             return View(tbl_vendor);
         }
 

@@ -13,9 +13,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.AutoID)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.GST)
         </th>
         <th>
@@ -38,9 +35,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AutoID)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.GST)
         </td>

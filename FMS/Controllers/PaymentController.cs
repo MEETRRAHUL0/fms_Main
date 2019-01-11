@@ -11,107 +11,116 @@ using FMS;
 
 namespace FMS.Controllers
 {
-    public class ItemTypeController : Controller
+    public class PaymentController : Controller
     {
         private FMSExpEntities db = new FMSExpEntities();
 
-        // GET: ItemType
+        // GET: Payment
         public async Task<ActionResult> Index()
         {
-            return View(await db.tbl_ItemType.ToListAsync());
+            var tbl_Payment = db.tbl_Payment.Include(t => t.tbl_vendor).Include(t => t.tbl_Transaction);
+            return View(await tbl_Payment.ToListAsync());
         }
 
-        // GET: ItemType/Details/5
-        public async Task<ActionResult> Details(int? id)
+        // GET: Payment/Details/5
+        public async Task<ActionResult> Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbl_ItemType tbl_ItemType = await db.tbl_ItemType.FindAsync(id);
-            if (tbl_ItemType == null)
+            tbl_Payment tbl_Payment = await db.tbl_Payment.FindAsync(id);
+            if (tbl_Payment == null)
             {
                 return HttpNotFound();
             }
-            return View(tbl_ItemType);
+            return View(tbl_Payment);
         }
 
-        // GET: ItemType/Create
+        // GET: Payment/Create
         public ActionResult Create()
         {
+            ViewBag.PartyName = new SelectList(db.tbl_vendor, "ID", "Name");
+
             return View();
         }
 
-        // POST: ItemType/Create
+        // POST: Payment/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ItemTypeId,ItemType")] tbl_ItemType tbl_ItemType)
+        public async Task<ActionResult> Create([Bind(Include = "AutoID,ID,PaymentDate,PartyName,Amount,PaymentMode,Remark,CreatedDatetime")] tbl_Payment tbl_Payment)
         {
             if (ModelState.IsValid)
             {
-                db.tbl_ItemType.Add(tbl_ItemType);
+                db.tbl_Payment.Add(tbl_Payment);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(tbl_ItemType);
+            ViewBag.PartyName = new SelectList(db.tbl_vendor, "ID", "Name", tbl_Payment.PartyName);
+
+            return View(tbl_Payment);
         }
 
-        // GET: ItemType/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        // GET: Payment/Edit/5
+        public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbl_ItemType tbl_ItemType = await db.tbl_ItemType.FindAsync(id);
-            if (tbl_ItemType == null)
+            tbl_Payment tbl_Payment = await db.tbl_Payment.FindAsync(id);
+            if (tbl_Payment == null)
             {
                 return HttpNotFound();
             }
-            return View(tbl_ItemType);
+            ViewBag.PartyName = new SelectList(db.tbl_vendor, "ID", "Name", tbl_Payment.PartyName);
+
+            return View(tbl_Payment);
         }
 
-        // POST: ItemType/Edit/5
+        // POST: Payment/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ItemTypeId,ItemType")] tbl_ItemType tbl_ItemType)
+        public async Task<ActionResult> Edit([Bind(Include = "AutoID,ID,PaymentDate,PartyName,Amount,PaymentMode,Remark,CreatedDatetime")] tbl_Payment tbl_Payment)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbl_ItemType).State = EntityState.Modified;
+                db.Entry(tbl_Payment).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(tbl_ItemType);
+            ViewBag.PartyName = new SelectList(db.tbl_vendor, "ID", "Name", tbl_Payment.PartyName);
+
+            return View(tbl_Payment);
         }
 
-        // GET: ItemType/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        // GET: Payment/Delete/5
+        public async Task<ActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbl_ItemType tbl_ItemType = await db.tbl_ItemType.FindAsync(id);
-            if (tbl_ItemType == null)
+            tbl_Payment tbl_Payment = await db.tbl_Payment.FindAsync(id);
+            if (tbl_Payment == null)
             {
                 return HttpNotFound();
             }
-            return View(tbl_ItemType);
+            return View(tbl_Payment);
         }
 
-        // POST: ItemType/Delete/5
+        // POST: Payment/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(string id)
         {
-            tbl_ItemType tbl_ItemType = await db.tbl_ItemType.FindAsync(id);
-            db.tbl_ItemType.Remove(tbl_ItemType);
+            tbl_Payment tbl_Payment = await db.tbl_Payment.FindAsync(id);
+            db.tbl_Payment.Remove(tbl_Payment);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

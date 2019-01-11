@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="FMSExpModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="FMSExpModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbl_GST">
           <Key>
             <PropertyRef Name="ID" />
@@ -78,6 +78,19 @@
           <Property Name="MeasurintUnitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MeasuringUnits" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="tbl_Payment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PaymentDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="PartyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PaymentMode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDatetime" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="tbl_PaymentMode">
           <Key>
             <PropertyRef Name="ID" />
@@ -85,6 +98,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Mode" Type="nvarchar" MaxLength="50" />
           <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsVisible" Type="bit" />
         </EntityType>
         <EntityType Name="tbl_Purchase">
           <Key>
@@ -157,6 +171,7 @@
           <Property Name="CreatedDatetime" Type="nvarchar" MaxLength="50" />
           <Property Name="TransactionType" Type="nvarchar" MaxLength="50" />
           <Property Name="TransactionRef" Type="nvarchar" MaxLength="50" />
+          <Property Name="PaymentID" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tbl_vendor">
           <Key>
@@ -394,6 +409,18 @@ warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tbl_Payment_tbl_Payment">
+          <End Role="tbl_vendor" Type="Self.tbl_vendor" Multiplicity="0..1" />
+          <End Role="tbl_Payment" Type="Self.tbl_Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_vendor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Payment">
+              <PropertyRef Name="PartyName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tbl_Purchase_tbl_PaymentMode">
           <End Role="tbl_PaymentMode" Type="Self.tbl_PaymentMode" Multiplicity="0..1" />
           <End Role="tbl_Purchase" Type="Self.tbl_Purchase" Multiplicity="*" />
@@ -427,6 +454,18 @@ warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a 
             </Principal>
             <Dependent Role="tbl_Sale">
               <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Transaction_tbl_Payment">
+          <End Role="tbl_Payment" Type="Self.tbl_Payment" Multiplicity="0..1" />
+          <End Role="tbl_Transaction" Type="Self.tbl_Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Payment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Transaction">
+              <PropertyRef Name="PaymentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -496,6 +535,7 @@ warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a 
           <EntitySet Name="tbl_ItemStock" EntityType="Self.tbl_ItemStock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_ItemType" EntityType="Self.tbl_ItemType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_ItemUnits" EntityType="Self.tbl_ItemUnits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Payment" EntityType="Self.tbl_Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_PaymentMode" EntityType="Self.tbl_PaymentMode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Purchase" EntityType="Self.tbl_Purchase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Sale" EntityType="Self.tbl_Sale" Schema="dbo" store:Type="Tables" />
@@ -598,6 +638,10 @@ warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a 
             <End Role="tbl_Sale" EntitySet="tbl_Sale" />
             <End Role="tbl_ItemStock" EntitySet="tbl_ItemStock" />
           </AssociationSet>
+          <AssociationSet Name="FK_tbl_Payment_tbl_Payment" Association="Self.FK_tbl_Payment_tbl_Payment">
+            <End Role="tbl_vendor" EntitySet="tbl_vendor" />
+            <End Role="tbl_Payment" EntitySet="tbl_Payment" />
+          </AssociationSet>
           <AssociationSet Name="FK_tbl_Purchase_tbl_PaymentMode" Association="Self.FK_tbl_Purchase_tbl_PaymentMode">
             <End Role="tbl_PaymentMode" EntitySet="tbl_PaymentMode" />
             <End Role="tbl_Purchase" EntitySet="tbl_Purchase" />
@@ -609,6 +653,10 @@ warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a 
           <AssociationSet Name="FK_tbl_Sale_tbl_vendor" Association="Self.FK_tbl_Sale_tbl_vendor">
             <End Role="tbl_vendor" EntitySet="tbl_vendor" />
             <End Role="tbl_Sale" EntitySet="tbl_Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Transaction_tbl_Payment" Association="Self.FK_tbl_Transaction_tbl_Payment">
+            <End Role="tbl_Payment" EntitySet="tbl_Payment" />
+            <End Role="tbl_Transaction" EntitySet="tbl_Transaction" />
           </AssociationSet>
           <AssociationSet Name="FK_tbl_Transaction_tbl_Purchase" Association="Self.FK_tbl_Transaction_tbl_Purchase">
             <End Role="tbl_Purchase" EntitySet="tbl_Purchase" />
@@ -631,7 +679,8 @@ warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a 
             <End Role="tbl_VendorAddress" EntitySet="tbl_VendorAddress" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FMSExpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -719,6 +768,21 @@ warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a 
           <Property Name="MeasuringUnits" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tbl_Items" Relationship="Self.FK_tbl_Items_tbl_ItemUnits" FromRole="tbl_ItemUnits" ToRole="tbl_Items" />
         </EntityType>
+        <EntityType Name="tbl_Payment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PaymentDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PartyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDatetime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_vendor" Relationship="Self.FK_tbl_Payment_tbl_Payment" FromRole="tbl_Payment" ToRole="tbl_vendor" />
+          <NavigationProperty Name="tbl_Transaction" Relationship="Self.FK_tbl_Transaction_tbl_Payment" FromRole="tbl_Payment" ToRole="tbl_Transaction" />
+        </EntityType>
         <EntityType Name="tbl_PaymentMode">
           <Key>
             <PropertyRef Name="ID" />
@@ -726,6 +790,7 @@ warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a 
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Mode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsVisible" Type="Boolean" />
           <NavigationProperty Name="tbl_Purchase" Relationship="Self.FK_tbl_Purchase_tbl_PaymentMode" FromRole="tbl_PaymentMode" ToRole="tbl_Purchase" />
         </EntityType>
         <EntityType Name="tbl_Purchase">
@@ -806,12 +871,10 @@ warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a 
           <Property Name="CreatedDatetime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TransactionRef" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Payment" Relationship="Self.FK_tbl_Transaction_tbl_Payment" FromRole="tbl_Transaction" ToRole="tbl_Payment" />
           <NavigationProperty Name="tbl_Purchase" Relationship="Self.FK_tbl_Transaction_tbl_Purchase" FromRole="tbl_Transaction" ToRole="tbl_Purchase" />
           <NavigationProperty Name="tbl_Sale" Relationship="Self.FK_tbl_Transaction_tbl_Sale" FromRole="tbl_Transaction" ToRole="tbl_Sale" />
-          <NavigationProperty Name="tbl_Transaction1" Relationship="Self.FK_tbl_Transaction_tbl_Transaction" FromRole="tbl_Transaction" ToRole="tbl_Transaction1" />
-          <NavigationProperty Name="tbl_Transaction2" Relationship="Self.FK_tbl_Transaction_tbl_Transaction" FromRole="tbl_Transaction1" ToRole="tbl_Transaction" />
-          <NavigationProperty Name="tbl_Transaction11" Relationship="Self.FK_tbl_Transaction_tbl_Transaction1" FromRole="tbl_Transaction" ToRole="tbl_Transaction1" />
-          <NavigationProperty Name="tbl_Transaction3" Relationship="Self.FK_tbl_Transaction_tbl_Transaction1" FromRole="tbl_Transaction1" ToRole="tbl_Transaction" />
           <NavigationProperty Name="tbl_vendor" Relationship="Self.FK_tbl_Transaction_tbl_vendor" FromRole="tbl_Transaction" ToRole="tbl_vendor" />
         </EntityType>
         <EntityType Name="tbl_vendor">
@@ -847,6 +910,7 @@ warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a 
           <Property Name="SuretyPersonContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SuretyPersonAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tbl_Items" Relationship="Self.FK_tbl_Items_tbl_vendor" FromRole="tbl_vendor" ToRole="tbl_Items" />
+          <NavigationProperty Name="tbl_Payment" Relationship="Self.FK_tbl_Payment_tbl_Payment" FromRole="tbl_vendor" ToRole="tbl_Payment" />
           <NavigationProperty Name="tbl_Purchase" Relationship="Self.FK_tbl_Purchase_tbl_vendor" FromRole="tbl_vendor" ToRole="tbl_Purchase" />
           <NavigationProperty Name="tbl_Sale" Relationship="Self.FK_tbl_Sale_tbl_vendor" FromRole="tbl_vendor" ToRole="tbl_Sale" />
           <NavigationProperty Name="tbl_Transaction" Relationship="Self.FK_tbl_Transaction_tbl_vendor" FromRole="tbl_vendor" ToRole="tbl_Transaction" />
@@ -1050,6 +1114,30 @@ warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tbl_Payment_tbl_Payment">
+          <End Role="tbl_vendor" Type="Self.tbl_vendor" Multiplicity="0..1" />
+          <End Role="tbl_Payment" Type="Self.tbl_Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_vendor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Payment">
+              <PropertyRef Name="PartyName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Transaction_tbl_Payment">
+          <End Role="tbl_Payment" Type="Self.tbl_Payment" Multiplicity="0..1" />
+          <End Role="tbl_Transaction" Type="Self.tbl_Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Payment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbl_Transaction">
+              <PropertyRef Name="PaymentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tbl_Purchase_tbl_PaymentMode">
           <End Role="tbl_PaymentMode" Type="Self.tbl_PaymentMode" Multiplicity="0..1" />
           <End Role="tbl_Purchase" Type="Self.tbl_Purchase" Multiplicity="*" />
@@ -1110,30 +1198,6 @@ warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tbl_Transaction_tbl_Transaction">
-          <End Role="tbl_Transaction" Type="Self.tbl_Transaction" Multiplicity="1" />
-          <End Role="tbl_Transaction1" Type="Self.tbl_Transaction" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_Transaction">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tbl_Transaction1">
-              <PropertyRef Name="ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tbl_Transaction_tbl_Transaction1">
-          <End Role="tbl_Transaction" Type="Self.tbl_Transaction" Multiplicity="1" />
-          <End Role="tbl_Transaction1" Type="Self.tbl_Transaction" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_Transaction">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tbl_Transaction1">
-              <PropertyRef Name="ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tbl_Transaction_tbl_vendor">
           <End Role="tbl_vendor" Type="Self.tbl_vendor" Multiplicity="0..1" />
           <End Role="tbl_Transaction" Type="Self.tbl_Transaction" Multiplicity="*" />
@@ -1176,6 +1240,7 @@ warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a 
           <EntitySet Name="tbl_ItemStock" EntityType="Self.tbl_ItemStock" />
           <EntitySet Name="tbl_ItemType" EntityType="Self.tbl_ItemType" />
           <EntitySet Name="tbl_ItemUnits" EntityType="Self.tbl_ItemUnits" />
+          <EntitySet Name="tbl_Payment" EntityType="Self.tbl_Payment" />
           <EntitySet Name="tbl_PaymentMode" EntityType="Self.tbl_PaymentMode" />
           <EntitySet Name="tbl_Purchase" EntityType="Self.tbl_Purchase" />
           <EntitySet Name="tbl_Sale" EntityType="Self.tbl_Sale" />
@@ -1217,6 +1282,14 @@ warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a 
             <End Role="tbl_Sale" EntitySet="tbl_Sale" />
             <End Role="tbl_ItemStock" EntitySet="tbl_ItemStock" />
           </AssociationSet>
+          <AssociationSet Name="FK_tbl_Payment_tbl_Payment" Association="Self.FK_tbl_Payment_tbl_Payment">
+            <End Role="tbl_vendor" EntitySet="tbl_vendor" />
+            <End Role="tbl_Payment" EntitySet="tbl_Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Transaction_tbl_Payment" Association="Self.FK_tbl_Transaction_tbl_Payment">
+            <End Role="tbl_Payment" EntitySet="tbl_Payment" />
+            <End Role="tbl_Transaction" EntitySet="tbl_Transaction" />
+          </AssociationSet>
           <AssociationSet Name="FK_tbl_Purchase_tbl_PaymentMode" Association="Self.FK_tbl_Purchase_tbl_PaymentMode">
             <End Role="tbl_PaymentMode" EntitySet="tbl_PaymentMode" />
             <End Role="tbl_Purchase" EntitySet="tbl_Purchase" />
@@ -1236,14 +1309,6 @@ warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a 
           <AssociationSet Name="FK_tbl_Transaction_tbl_Sale" Association="Self.FK_tbl_Transaction_tbl_Sale">
             <End Role="tbl_Sale" EntitySet="tbl_Sale" />
             <End Role="tbl_Transaction" EntitySet="tbl_Transaction" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tbl_Transaction_tbl_Transaction" Association="Self.FK_tbl_Transaction_tbl_Transaction">
-            <End Role="tbl_Transaction" EntitySet="tbl_Transaction" />
-            <End Role="tbl_Transaction1" EntitySet="tbl_Transaction" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tbl_Transaction_tbl_Transaction1" Association="Self.FK_tbl_Transaction_tbl_Transaction1">
-            <End Role="tbl_Transaction" EntitySet="tbl_Transaction" />
-            <End Role="tbl_Transaction1" EntitySet="tbl_Transaction" />
           </AssociationSet>
           <AssociationSet Name="FK_tbl_Transaction_tbl_vendor" Association="Self.FK_tbl_Transaction_tbl_vendor">
             <End Role="tbl_vendor" EntitySet="tbl_vendor" />
@@ -1342,12 +1407,27 @@ warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Payment">
+            <EntityTypeMapping TypeName="FMSExpModel.tbl_Payment">
+              <MappingFragment StoreEntitySet="tbl_Payment">
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="PartyName" ColumnName="PartyName" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CreatedDatetime" ColumnName="CreatedDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tbl_PaymentMode">
             <EntityTypeMapping TypeName="FMSExpModel.tbl_PaymentMode">
               <MappingFragment StoreEntitySet="tbl_PaymentMode">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Mode" ColumnName="Mode" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1424,6 +1504,7 @@ warning 6002: The table/view 'FMSExp.dbo.vw_StockExpirydetails' does not have a 
                 <ScalarProperty Name="CreatedDatetime" ColumnName="CreatedDatetime" />
                 <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
                 <ScalarProperty Name="TransactionRef" ColumnName="TransactionRef" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

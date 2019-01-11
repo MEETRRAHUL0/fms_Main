@@ -22,7 +22,7 @@ namespace FMS.Controllers
         }
 
         // GET: GST/Details/5
-        public async Task<ActionResult> Details(string id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -39,8 +39,6 @@ namespace FMS.Controllers
         // GET: GST/Create
         public ActionResult Create()
         {
-            ViewBag.ID = Convert.ToInt32( db.tbl_GST.Max(q => q.ID)) + 1;
-            ViewBag.CreatedDatetime = DateTime.Now;
             return View();
         }
 
@@ -49,7 +47,7 @@ namespace FMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "AutoID,ID,GST,SGST,CGST,IGST,Comment,Name")] tbl_GST tbl_GST)
+        public async Task<ActionResult> Create([Bind(Include = "ID,GST,SGST,CGST,IGST,Comment,Name")] tbl_GST tbl_GST)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +60,7 @@ namespace FMS.Controllers
         }
 
         // GET: GST/Edit/5
-        public async Task<ActionResult> Edit(string id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -81,7 +79,7 @@ namespace FMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "AutoID,ID,GST,SGST,CGST,IGST,Comment,Name")] tbl_GST tbl_GST)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,GST,SGST,CGST,IGST,Comment,Name")] tbl_GST tbl_GST)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +91,7 @@ namespace FMS.Controllers
         }
 
         // GET: GST/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -110,7 +108,7 @@ namespace FMS.Controllers
         // POST: GST/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
             tbl_GST tbl_GST = await db.tbl_GST.FindAsync(id);
             db.tbl_GST.Remove(tbl_GST);

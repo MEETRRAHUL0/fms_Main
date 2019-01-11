@@ -18,6 +18,7 @@ namespace FMS
         public tbl_vendor()
         {
             this.tbl_Items = new HashSet<tbl_Items>();
+            this.tbl_Payment = new HashSet<tbl_Payment>();
             this.tbl_Purchase = new HashSet<tbl_Purchase>();
             this.tbl_Sale = new HashSet<tbl_Sale>();
             this.tbl_Transaction = new HashSet<tbl_Transaction>();
@@ -55,6 +56,8 @@ namespace FMS
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_Items> tbl_Items { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_Payment> tbl_Payment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_Purchase> tbl_Purchase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

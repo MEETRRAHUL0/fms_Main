@@ -12,26 +12,25 @@ namespace FMS
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_Transaction
+    public partial class tbl_Payment
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbl_Payment()
+        {
+            this.tbl_Transaction = new HashSet<tbl_Transaction>();
+        }
+    
         public int AutoID { get; set; }
         public string ID { get; set; }
-        public string VendorID { get; set; }
-        public string PurchaseID { get; set; }
-        public string SalesID { get; set; }
-        public string EntryID { get; set; }
-        public string EntryDate { get; set; }
-        public string EntryType { get; set; }
+        public string PaymentDate { get; set; }
+        public string PartyName { get; set; }
         public Nullable<decimal> Amount { get; set; }
-        public string Status { get; set; }
+        public string PaymentMode { get; set; }
+        public string Remark { get; set; }
         public string CreatedDatetime { get; set; }
-        public string TransactionType { get; set; }
-        public string TransactionRef { get; set; }
-        public string PaymentID { get; set; }
     
-        public virtual tbl_Payment tbl_Payment { get; set; }
-        public virtual tbl_Purchase tbl_Purchase { get; set; }
-        public virtual tbl_Sale tbl_Sale { get; set; }
         public virtual tbl_vendor tbl_vendor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_Transaction> tbl_Transaction { get; set; }
     }
 }

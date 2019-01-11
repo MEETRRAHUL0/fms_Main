@@ -589,8 +589,10 @@
     <Compile Include="Controllers\GSTController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
+    <Compile Include="Controllers\ItemTypeController.cs" />
     <Compile Include="Controllers\ItemUnitsController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PaymentModeController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
@@ -598,8 +600,9 @@
     <Compile Include="Controllers\StockAvailableController.cs" />
     <Compile Include="Controllers\StockDetailsController.cs" />
     <Compile Include="Controllers\StockExpirydetailsController.cs" />
-    <Compile Include="Controllers\ItemTypeController.cs" />
+    <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
+    <Compile Include="Controllers\vendorTypeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -649,6 +652,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_ItemUnits.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Payment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_PaymentMode.cs">
@@ -740,6 +746,26 @@
     <Content Include="Views\Vendor\Details.cshtml" />
     <Content Include="Views\Vendor\Edit.cshtml" />
     <Content Include="Views\Vendor\Index.cshtml" />
+    <Content Include="Views\Sequence\Create.cshtml" />
+    <Content Include="Views\Sequence\Delete.cshtml" />
+    <Content Include="Views\Sequence\Details.cshtml" />
+    <Content Include="Views\Sequence\Edit.cshtml" />
+    <Content Include="Views\Sequence\Index.cshtml" />
+    <Content Include="Views\vendorType\Create.cshtml" />
+    <Content Include="Views\vendorType\Delete.cshtml" />
+    <Content Include="Views\vendorType\Details.cshtml" />
+    <Content Include="Views\vendorType\Edit.cshtml" />
+    <Content Include="Views\vendorType\Index.cshtml" />
+    <Content Include="Views\Transaction\Create.cshtml" />
+    <Content Include="Views\Transaction\Delete.cshtml" />
+    <Content Include="Views\Transaction\Details.cshtml" />
+    <Content Include="Views\Transaction\Edit.cshtml" />
+    <Content Include="Views\Transaction\Index.cshtml" />
+    <Content Include="Views\Payment\Create.cshtml" />
+    <Content Include="Views\Payment\Delete.cshtml" />
+    <Content Include="Views\Payment\Details.cshtml" />
+    <Content Include="Views\Payment\Edit.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\GST\Create.cshtml" />
     <Content Include="Views\GST\Delete.cshtml" />
     <Content Include="Views\GST\Details.cshtml" />
@@ -760,11 +786,6 @@
     <Content Include="Views\PaymentMode\Details.cshtml" />
     <Content Include="Views\PaymentMode\Edit.cshtml" />
     <Content Include="Views\PaymentMode\Index.cshtml" />
-    <Content Include="Views\Sequence\Create.cshtml" />
-    <Content Include="Views\Sequence\Delete.cshtml" />
-    <Content Include="Views\Sequence\Details.cshtml" />
-    <Content Include="Views\Sequence\Edit.cshtml" />
-    <Content Include="Views\Sequence\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -11,107 +11,107 @@ using FMS;
 
 namespace FMS.Controllers
 {
-    public class ItemTypeController : Controller
+    public class vendorTypeController : Controller
     {
         private FMSExpEntities db = new FMSExpEntities();
 
-        // GET: ItemType
+        // GET: vendorType
         public async Task<ActionResult> Index()
         {
-            return View(await db.tbl_ItemType.ToListAsync());
+            return View(await db.tbl_vendorType.ToListAsync());
         }
 
-        // GET: ItemType/Details/5
-        public async Task<ActionResult> Details(int? id)
+        // GET: vendorType/Details/5
+        public async Task<ActionResult> Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbl_ItemType tbl_ItemType = await db.tbl_ItemType.FindAsync(id);
-            if (tbl_ItemType == null)
+            tbl_vendorType tbl_vendorType = await db.tbl_vendorType.FindAsync(id);
+            if (tbl_vendorType == null)
             {
                 return HttpNotFound();
             }
-            return View(tbl_ItemType);
+            return View(tbl_vendorType);
         }
 
-        // GET: ItemType/Create
+        // GET: vendorType/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ItemType/Create
+        // POST: vendorType/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ItemTypeId,ItemType")] tbl_ItemType tbl_ItemType)
+        public async Task<ActionResult> Create([Bind(Include = "AutoID,ID,Name")] tbl_vendorType tbl_vendorType)
         {
             if (ModelState.IsValid)
             {
-                db.tbl_ItemType.Add(tbl_ItemType);
+                db.tbl_vendorType.Add(tbl_vendorType);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(tbl_ItemType);
+            return View(tbl_vendorType);
         }
 
-        // GET: ItemType/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        // GET: vendorType/Edit/5
+        public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbl_ItemType tbl_ItemType = await db.tbl_ItemType.FindAsync(id);
-            if (tbl_ItemType == null)
+            tbl_vendorType tbl_vendorType = await db.tbl_vendorType.FindAsync(id);
+            if (tbl_vendorType == null)
             {
                 return HttpNotFound();
             }
-            return View(tbl_ItemType);
+            return View(tbl_vendorType);
         }
 
-        // POST: ItemType/Edit/5
+        // POST: vendorType/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ItemTypeId,ItemType")] tbl_ItemType tbl_ItemType)
+        public async Task<ActionResult> Edit([Bind(Include = "AutoID,ID,Name")] tbl_vendorType tbl_vendorType)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbl_ItemType).State = EntityState.Modified;
+                db.Entry(tbl_vendorType).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(tbl_ItemType);
+            return View(tbl_vendorType);
         }
 
-        // GET: ItemType/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        // GET: vendorType/Delete/5
+        public async Task<ActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbl_ItemType tbl_ItemType = await db.tbl_ItemType.FindAsync(id);
-            if (tbl_ItemType == null)
+            tbl_vendorType tbl_vendorType = await db.tbl_vendorType.FindAsync(id);
+            if (tbl_vendorType == null)
             {
                 return HttpNotFound();
             }
-            return View(tbl_ItemType);
+            return View(tbl_vendorType);
         }
 
-        // POST: ItemType/Delete/5
+        // POST: vendorType/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(string id)
         {
-            tbl_ItemType tbl_ItemType = await db.tbl_ItemType.FindAsync(id);
-            db.tbl_ItemType.Remove(tbl_ItemType);
+            tbl_vendorType tbl_vendorType = await db.tbl_vendorType.FindAsync(id);
+            db.tbl_vendorType.Remove(tbl_vendorType);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

@@ -211,7 +211,7 @@
                         @Html.Label("Amount", htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-7">
                             @Html.TextBox("Amount",null,    new { @readonly = true, @class = "form-control" })
-                            @*@Html.ValidationMessageFor(model => model.PaymentMode, "", new { @class = "text-danger" })*@
+                            @Html.ValidationMessageFor(model => model.PaymentMode, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
@@ -261,7 +261,7 @@
         });
 
 
-        $('#ItemID').off('change.ItemID').on('change.ItemID', function (e) {
+        $('#PaymentMode').off('change.PaymentMode').on('change.PaymentMode', function (e) {
             //debugger;
          
             var id = $(this).val();
@@ -315,13 +315,13 @@
                 $("#PaymentMode").css("border-color", "#FF0000");
                 return false;
             }
-            else if ($('#PaymentMode').val() == 4) {
-                if ($('#Amount').val() == "") {
-                    $("#Amount").focus();
-                    $("#Amount").css("border-color", "#FF0000");
-                    return false;
-                }
-            }
+            //else if ($('#PaymentMode').val() == 4) {
+            //    if ($('#Amount').val() == "") {
+            //        $("#Amount").focus();
+            //        $("#Amount").css("border-color", "#FF0000");
+            //        return false;
+            //    }
+            //}
             //var d1 = $('#FormPurchase').serialize();
             //var data1 = $('#FormPurchase').serializeArray();
             var data = $('#FormPurchase').serializeArray().reduce(function (obj, item) {
