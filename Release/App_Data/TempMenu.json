@@ -1,0 +1,394 @@
+{
+  "role": "STOREPROD_TESTER",
+  "associateId": "07004868",
+  "createdDateTime": "2018-03-21T02:04:37.5758327-04:00",
+  "deviceType": "SpManager",
+  "type": "Client",
+  "menuName": "SpManager",
+  "division": 71,
+  "location": 527,
+  "menuItems": [
+    {
+      "items": [
+        {
+          "path": "/Dashboard/Overview",
+          "version": "1.0.0",
+          "ruleId": 29,
+          "ruleAccessType": "Division",
+          "displayName": "Overview",
+          "icon": "fa fa-umbrella fa-fw",
+          "type": "WebLink",
+          "ordinal": 0,
+          "tag": null
+        },
+        {
+          "path": "/Dashboard/Fulfillment",
+          "version": "1.0.0",
+          "ruleId": 30,
+          "ruleAccessType": "Division",
+          "displayName": "Fulfillment",
+          "icon": "fa fa-check-circle fa-fw",
+          "type": "WebLink",
+          "ordinal": 1,
+          "tag": null
+        },
+        {
+          "path": "http://SPMTransfersqa/Dashboard/NCT",
+          "version": "1.0.0",
+          "ruleId": 3949,
+          "ruleAccessType": "Division",
+          "displayName": "NCT",
+          "icon": "fa fa-share-square-o fa-fw",
+          "type": "WebLink",
+          "ordinal": 2,
+          "tag": null
+        },
+        {
+          "path": "http://spmreplenishmentqa/TUTEXODashBoard",
+          "version": "1.1.1.0",
+          "ruleId": 6841,
+          "ruleAccessType": "Division",
+          "displayName": "TagUpTool",
+          "icon": "fa fa-arrow-circle-up fa-fw",
+          "type": "WebLink",
+          "ordinal": 3,
+          "tag": "test"
+        },
+        {
+          "path": "http://spmreplenishmentqa/CCDashboard",
+          "version": "1.0.0",
+          "ruleId": 7294,
+          "ruleAccessType": "Division",
+          "displayName": "Cycle Count",
+          "icon": "fa fa-repeat",
+          "type": "WebLink",
+          "ordinal": 4,
+          "tag": null
+        }
+      ],
+      "displayName": "Dashboard",
+      "icon": null,
+      "type": "Section",
+      "ordinal": 0,
+      "tag": null
+    },
+    {
+      "items": [
+        {
+          "path": "/FulfillmentActiveworkload/WorkloadLandingPage",
+          "version": "1.0.0",
+          "ruleId": 32,
+          "ruleAccessType": "Division",
+          "displayName": "Work",
+          "icon": "fa fa-wrench fa-fw",
+          "type": "WebLink",
+          "ordinal": 0,
+          "tag": null
+        },
+        {
+          "path": "/FulfillmentActiveworkload/FulfillmentActiveworkload",
+          "version": "1.0.0",
+          "ruleId": 33,
+          "ruleAccessType": "Division",
+          "displayName": "Fulfillment",
+          "icon": "fa fa-check-square-o fa-fw",
+          "type": "WebLink",
+          "ordinal": 1,
+          "tag": null
+        },
+		{
+          "path": "/FulfillmentActiveworkload/InboundActiveworkload",
+          "version": "1.0.0",
+          "ruleId": 33,
+          "ruleAccessType": "Division",
+          "displayName": "Inbound",
+          "icon": "fa fa-truck fa-fw",
+          "type": "WebLink",
+          "ordinal": 2,
+          "tag": null
+        },
+        {
+          "items": [
+            {
+              "path": "http://SPMTransfersqa/NCTRequestSummary/NCTRequestSummary",
+              "version": "1.0.0",
+              "ruleId": 2099,
+              "ruleAccessType": "Location",
+              "displayName": "Summary Data",
+              "icon": "fa fa-file-text fa-fw",
+              "type": "WebLink",
+              "ordinal": 0,
+              "tag": null
+            },
+            {
+              "path": "http://SPMTransfersqa/NCTRequest/NCTRequest",
+              "version": "1.0.0",
+              "ruleId": 2846,
+              "ruleAccessType": "Location",
+              "displayName": "Status Data",
+              "icon": "fa fa-file-text-o fa-fw",
+              "type": "WebLink",
+              "ordinal": 1,
+              "tag": null
+            }
+          ],
+          "displayName": "NCT",
+          "icon": null,
+          "type": "Section",
+          "ordinal": 3,
+          "tag": null
+        },
+        {
+          "path": "http://spmreplenishmentqa/WLTut",
+          "version": "2.4.5320.21 ",
+          "ruleId": 6826,
+          "ruleAccessType": "Division",
+          "displayName": "TagUpTool",
+          "icon": "fa fa-arrow-circle-up fa-fw",
+          "type": "WebLink",
+          "ordinal": 4,
+          "tag": null
+        },
+        {
+          "path": "http://spmreplenishmentqa/WLCC",
+          "version": "1.0.0",
+          "ruleId": 7322,
+          "ruleAccessType": "Division",
+          "displayName": "Cycle Count",
+          "icon": "fa fa-repeat",
+          "type": "WebLink",
+          "ordinal": 5,
+          "tag": null
+        }
+      ],
+      "displayName": "WORKLOAD",
+      "icon": null,
+      "type": "Section",
+      "ordinal": 1,
+      "tag": null
+    },
+    {
+      "items": [
+        {
+          "path": "/Home/Reporting",
+          "version": "1.0.0",
+          "ruleId": 37,
+          "ruleAccessType": "Division",
+          "displayName": "General",
+          "icon": "fa fa-globe fa-fw",
+          "type": "WebLink",
+          "ordinal": 0,
+          "tag": null
+        },
+        {
+          "path": "/DeviceUtilization/DeviceUtilization",
+          "version": "1.0.0",
+          "ruleId": 38,
+          "ruleAccessType": "Division",
+          "displayName": "Device Utilization",
+          "icon": "fa fa-line-chart fa-fw",
+          "type": "WebLink",
+          "ordinal": 1,
+          "tag": null
+        },
+        {
+          "path": "http://spmreplenishmentqa/DisplayAudit",
+          "version": "1.0.0",
+          "ruleId": 39,
+          "ruleAccessType": "Division",
+          "displayName": "Display Audit",
+          "icon": "fa fa-cubes fa-fw",
+          "type": "WebLink",
+          "ordinal": 2,
+          "tag": null
+        },
+        {
+          "path": "/Home/Fulfillment",
+          "version": "1.0.0",
+          "ruleId": 40,
+          "ruleAccessType": "Division",
+          "displayName": "Fullfillment",
+          "icon": "fa fa-check-square-o fa-fw",
+          "type": "WebLink",
+          "ordinal": 3,
+          "tag": null
+        },
+        {
+          "path": "http://SPMTransfersqa/NCTReports/NCTReports?ViewType=NCTDispositionReports",
+          "version": "1.0.0",
+          "ruleId": 3593,
+          "ruleAccessType": "Location",
+          "displayName": "NCT",
+          "icon": "fa fa-share-square-o fa-fw",
+          "type": "WebLink",
+          "ordinal": 4,
+          "tag": null
+        },
+        {
+          "path": "/TrueVUE/TrueVUE",
+          "version": "1.0.0",
+          "ruleId": 42,
+          "ruleAccessType": "Division",
+          "displayName": "TrueVUE",
+          "icon": "fa fa-area-chart fa-fw",
+          "type": "WebLink",
+          "ordinal": 5,
+          "tag": null
+        },
+        {
+          "path": "http://MT000XSSTR96:16600/TagUpTool",
+          "version": "16.02.4510.13",
+          "ruleId": 6456,
+          "ruleAccessType": "Division",
+          "displayName": "TagUpTool",
+          "icon": "fa fa-arrow-circle-up fa-fw",
+          "type": "WebLink",
+          "ordinal": 6,
+          "tag": null
+        },
+        {
+          "path": "http://spmreplenishmentqa/B2FSummaryReport",
+          "version": "1.0.0",
+          "ruleId": 6719,
+          "ruleAccessType": "Division",
+          "displayName": "Back2Front",
+          "icon": "fa fa-arrow-right fa-fw",
+          "type": "WebLink",
+          "ordinal": 7,
+          "tag": null
+        }
+      ],
+      "displayName": "REPORTS",
+      "icon": null,
+      "type": "Section",
+      "ordinal": 2,
+      "tag": null
+    },
+    {
+      "items": [
+        {
+          "path": "/Pipeline/Pipeline",
+          "version": "1.0.0",
+          "ruleId": 50,
+          "ruleAccessType": "Division",
+          "displayName": "Pipeline",
+          "icon": "sprite sprite-logo--pipeline",
+          "type": "WebLink",
+          "ordinal": 0,
+          "tag": null
+        }
+      ],
+      "displayName": "PIPELINE",
+      "icon": null,
+      "type": "Section",
+      "ordinal": 3,
+      "tag": null
+    },
+    {
+      "items": [
+        {
+          "path": "/Settings/General",
+          "version": "1.0.0",
+          "ruleId": 726,
+          "ruleAccessType": "Role",
+          "displayName": "General",
+          "icon": "fa fa-globe fa-fw",
+          "type": "WebLink",
+          "ordinal": 0,
+          "tag": null
+        },
+        {
+          "items": [
+            {
+              "path": "/SelectDivision/SelectDivision",
+              "version": "1.0.0",
+              "ruleId": 687,
+              "ruleAccessType": "Role",
+              "displayName": "Select Division",
+              "icon": "fa fa-exchange fa-fw",
+              "type": "WebLink",
+              "ordinal": 0,
+              "tag": null
+            },
+            {
+              "path": "/Roles/Roles",
+              "version": "1.0.0",
+              "ruleId": 718,
+              "ruleAccessType": "Role",
+              "displayName": "Roles",
+              "icon": "fa fa-user fa-fw",
+              "type": "WebLink",
+              "ordinal": 2,
+              "tag": null
+            }
+          ],
+          "displayName": "Admin",
+          "icon": null,
+          "type": "Section",
+          "ordinal": 1,
+          "tag": null
+        },
+        {
+          "path": "http://spmreplenishmentqa/ConfigDispAudit/CurrentAudits",
+          "version": "1.0.0",
+          "ruleId": 738,
+          "ruleAccessType": "Role",
+          "displayName": "Display Audit",
+          "icon": "fa fa-cubes fa-fw",
+          "type": "WebLink",
+          "ordinal": 3,
+          "tag": null
+        },
+        {
+          "path": "/PickingArea/PickingAreas",
+          "version": "1.0.0",
+          "ruleId": 7291,
+          "ruleAccessType": "Location",
+          "displayName": "Picking Area",
+          "icon": "fa fa-map-marker fa-fw",
+          "type": "WebLink",
+          "ordinal": 4,
+          "tag": null
+        },
+        {
+          "path": "/Zones/Home",
+          "version": "1.0.0",
+          "ruleId": 48,
+          "ruleAccessType": "Division",
+          "displayName": "Zones",
+          "icon": "fa fa-map-marker fa-fw",
+          "type": "WebLink",
+          "ordinal": 5,
+          "tag": null
+        },
+        {
+          "path": "/Groups/Home",
+          "version": "1.0.0",
+          "ruleId": 49,
+          "ruleAccessType": "Division",
+          "displayName": "Groups",
+          "icon": "fa fa-users fa-fw",
+          "type": "WebLink",
+          "ordinal": 6,
+          "tag": null
+        },
+        {
+          "path": "/StorageLocationExt/StorageLocation",
+          "version": "1.0.0",
+          "ruleId": 7250,
+          "ruleAccessType": "Division",
+          "displayName": "Location Set-up",
+          "icon": "fa fa-fw icon-storeLoc",
+          "type": "WebLink",
+          "ordinal": 7,
+          "tag": null
+        }
+      ],
+      "displayName": "SETTING",
+      "icon": null,
+      "type": "Section",
+      "ordinal": 4,
+      "tag": null
+    }
+  ]
+}

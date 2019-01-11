@@ -1,0 +1,102 @@
+﻿@model IEnumerable<FMS.tbl_Transaction>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AutoID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDatetime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionRef)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_Purchase.PartyInvoiceNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_Sale.InvoiceID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_vendor.Name)
+        </th>
+        
+        @*<th></th>*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AutoID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntryID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntryDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntryType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDatetime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionRef)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_Purchase.PartyInvoiceNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_Sale.InvoiceID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_vendor.Name)
+        </td>
+        
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>*@
+    </tr>
+}
+
+</table>

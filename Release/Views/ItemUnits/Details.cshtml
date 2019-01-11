@@ -1,0 +1,27 @@
+﻿@model FMS.tbl_ItemUnits
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_ItemUnits</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MeasuringUnits)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeasuringUnits)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MeasurintUnitID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

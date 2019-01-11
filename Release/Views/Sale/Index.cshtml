@@ -1,0 +1,94 @@
+﻿@model IEnumerable<FMS.tbl_Sale>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AutoID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscountAfterTax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherChargeAfterTax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalValueafterTax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GrandTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDatetime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_vendor.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AutoID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscountAfterTax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherChargeAfterTax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalValueafterTax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GrandTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDatetime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_vendor.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SaleID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SaleID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SaleID })
+        </td>
+    </tr>
+}
+
+</table>

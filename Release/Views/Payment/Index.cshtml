@@ -1,0 +1,72 @@
+﻿@model IEnumerable<FMS.tbl_Payment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AutoID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentMode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDatetime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_vendor.Name)
+        </th>
+         
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AutoID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentMode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remark)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDatetime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_vendor.Name)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

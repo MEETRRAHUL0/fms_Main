@@ -1,0 +1,106 @@
+﻿@model IEnumerable<FMS.tbl_Items>
+
+@{
+    ViewBag.Title = "View Items";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>View Items</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HSN_SAC_NO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Manufacture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BarCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemUniqueDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UseBatchNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UseMfgDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UseExpiryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_ItemType.ItemType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_ItemUnits.MeasuringUnits)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_vendor.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_GST.GST)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HSN_SAC_NO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Manufacture)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BarCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemUniqueDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Photo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UseBatchNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UseMfgDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UseExpiryDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_ItemType.ItemType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_ItemUnits.MeasuringUnits)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_vendor.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_GST.GST)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,166 @@
+﻿@model IEnumerable<FMS.tbl_Supplier>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactPerson)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Place)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GST_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIN_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PAN_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CIN_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address_Line1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address_Line2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pin_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OpeningBalance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.openingBalanceDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditPeriod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditIntrestRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactPerson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Place)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GST_No)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIN_No)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PAN_No)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CIN_No)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address_Line1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address_Line2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pin_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OpeningBalance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.openingBalanceDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreditLimit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreditPeriod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreditIntrestRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remark)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Photo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

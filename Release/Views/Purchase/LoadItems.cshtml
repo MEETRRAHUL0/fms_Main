@@ -1,0 +1,226 @@
+﻿@model IEnumerable<FMS.tbl_ItemStock>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.AutoID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_Items.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_Items.Name)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.StockType)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PricePerUnit)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.ItemwiseDiscount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PricePerUnitAfterDiscount)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPriceBeforeTax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SGST)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CGST)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.IGST)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.GST)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPriceAfterTax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MRP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManufactureDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Expirydate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BatchNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDatetime)
+        </th>
+
+        @*<th>
+            @Html.DisplayNameFor(model => model.tbl_Purchase.PartyInvoiceNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_Sale.InvoiceID)
+        </th>*@
+
+
+    </tr>
+    @if (Model != null && Model.Count() > 0)
+    {
+        var Count = 1;
+        foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            <button id="DeleteItemFromSession" data-ID="@Html.DisplayFor(modelItem => item.ID)" class="DeleteItemFromSession btn btn-link">
+                <i class="fa fa-trash"></i>
+            </button>
+            @*@Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+        </td>
+        <td>
+            @Count
+        </td>
+        <td>
+            <button id="EditItemFromSession" class="EditItemFromSession btn btn-link">
+                <i class="fa fa-pencil-square-o"></i>&nbsp;@Html.DisplayFor(modelItem => item.ID)
+            </button>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_Items.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_Items.Name)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.StockType)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Qty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PricePerUnit)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.ItemwiseDiscount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PricePerUnitAfterDiscount)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPriceBeforeTax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SGST)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CGST)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.IGST)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.GST)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPriceAfterTax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MRP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ManufactureDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Expirydate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BatchNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDatetime)
+        </td>
+
+        @*<td>
+            @Html.DisplayFor(modelItem => item.tbl_Purchase.PartyInvoiceNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_Sale.InvoiceID)
+        </td>*@
+
+
+    </tr>
+
+            @(Count++)
+        }
+
+    }
+    else
+    {
+        <tr><td colspan="4">No particular found , Please add Item ! </td></tr>
+    }
+    <tfoot>
+        <tr>
+            <td colspan="4">No. of Item : @(Model != null ? Model.Count() : 0 )</td>
+
+
+            <td colspan="3">Total Quantity : @(Model != null ? Model.Sum(q => q.Qty) : 0 )</td>
+
+        </tr>
+    </tfoot>
+</table>
+
+
+<script>
+    $(".EditItemFromSession").click(
+        function (id) {
+            //debugger;
+            //LoadEditItemListPopUP(id);
+
+            return false;
+        });
+
+    $(".DeleteItemFromSession").click(
+        function (id) {
+            debugger;
+            var tmp = $(this).attr('data-ID');
+            var strURL = '/Purchase/DeleteItemFromSession';
+            $.ajax({
+                data: { "ID": tmp },
+                datatype: 'json',
+                url: strURL,
+                type: 'POST',
+                success: function (response) {
+                    //debugger;
+                    LoadPurchaseItemsView();
+                    LoadTotalData(response.total)
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    // debugger;
+                    alert("Error : " + xhr.responseText + thrownError);
+
+                }
+
+            });
+            return false;
+        });
+</script>

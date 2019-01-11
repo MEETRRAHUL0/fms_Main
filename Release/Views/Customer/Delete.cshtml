@@ -1,0 +1,217 @@
+﻿@model FMS.tbl_Customer
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbl_Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AutoID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AutoID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactPerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactPerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DOB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Place)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Place)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GSTNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GSTNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TINNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TINNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PanNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PanNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdharNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdharNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CINNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CINNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpeningBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpeningBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpeningBalanceType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpeningBalanceType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BalanceOpeningDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BalanceOpeningDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditLimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreditLimit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditPeriod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreditPeriod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditInterest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreditInterest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Debitinterest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Debitinterest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SuretyPerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SuretyPerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SuretyPersonContactNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SuretyPersonContactNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDatetime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDatetime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MobileNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MobileNumber)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

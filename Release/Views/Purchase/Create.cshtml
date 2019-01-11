@@ -1,0 +1,509 @@
+﻿@model FMS.tbl_Purchase
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .lableStyle {
+        text-align: left !important;
+        /*padding-left: 0px;*/
+        /*font-weight: normal;*/
+        font-size: 12px;
+    }
+
+    .noPadding {
+        padding: 0px
+    }
+
+    .width50 {
+        width: 50%;
+    }
+
+    .border {
+        display: inline-block;
+        width: 70px;
+        height: 70px;
+        margin: 6px;
+    }
+</style>
+<script src="http://malsup.github.io/jquery.blockUI.js"></script>
+@using (Html.BeginForm(null, null, FormMethod.Get, new { id = "FormPurchase" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="col-md-12 " style="padding-top: 20px;">
+            <div class="col-md-5">
+                <h4> <strong>Add Purchase </strong></h4>
+            </div>
+            <div class="col-md-offset-8">
+                Purchase ID :  @ViewBag.ID <br />
+                Created on :  @ViewBag.CreatedDatetime
+            </div>
+            <hr />
+        </div>
+
+
+
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="col-md-12">
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PartyInvoiceDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.PartyInvoiceDate, new { htmlAttributes = new { @class = "form-control", @Type = "date" } })
+                        @Html.ValidationMessageFor(model => model.PartyInvoiceDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PartyInvoiceNo, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.PartyInvoiceNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PartyInvoiceNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PartyName, "Party Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.DropDownList("PartyName", null, "Please Select", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PartyName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+
+                @Html.Hidden("ID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.Hidden("CreatedDatetime", null, htmlAttributes: new { @class = "form-control" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PurchaseDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.PurchaseDate, new { htmlAttributes = new { @class = "form-control", @Type = "date" } })
+                        @Html.ValidationMessageFor(model => model.PurchaseDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PaymentDueAfter, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.PaymentDueAfter, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PaymentDueAfter, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ReverseCharge, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.ReverseCharge, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ReverseCharge, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <hr />
+            <div class="">
+                <span> Items List  </span>
+                <button id="CreateNewItem" class="CreateNewItem btn btn-danger" type="button">
+                    +
+                </button>
+
+            </div>
+            <div id="divLoadItems" style="overflow:auto">
+                @Html.Partial("LoadItems")
+            </div>
+        </div>
+
+        <div class="col-md-12 ">
+            <hr />
+            <div class="col-md-3 ">
+                <div class="form-group noPadding">
+                    @Html.LabelFor(model => model.Remark, htmlAttributes: new { @class = "control-label col-md-5  lableStyle" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Remark, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="form-group noPadding">
+                    @Html.LabelFor(model => model.DiscountAmount, htmlAttributes: new { @class = "control-label col-md-6 lableStyle" })
+                    @Html.CheckBox("ApplyDiscountAmount", false, new { onclick = "funApplyDiscountAmount()" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DiscountAmount, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group noPadding">
+                    @Html.LabelFor(model => model.OtherCharge, htmlAttributes: new { @class = "control-label col-md-5 lableStyle" })
+                    @Html.CheckBox("ApplyOtherCharge", false, new { onclick = "funApplyOtherCharge()" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.OtherCharge, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TotalAmountBeforeTax, htmlAttributes: new { @class = "control-label col-md-4 " })
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(model => model.TotalAmountBeforeTax, new { @readonly = true, @class = "form-control  " })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TaxAmount, htmlAttributes: new { @class = "control-label col-md-4 " })
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(model => model.TaxAmount, new { @readonly = true, @class = "form-control " })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TotalAmountAfterTax, htmlAttributes: new { @class = "control-label col-md-4 " })
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(model => model.TotalAmountAfterTax, new { @readonly = true, @class = "form-control " })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4 " style="text-align: right;">
+                        @Html.CheckBox("ApplyRoundOff", false)
+                        @Html.LabelFor(model => model.RoundOff, htmlAttributes: new { @class = "control-label  " })
+
+                    </div>
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(model => model.RoundOff, new { @readonly = true, @class = "form-control " })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GrandTotal, htmlAttributes: new { @class = "control-label col-md-4 " })
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(model => model.GrandTotal, new { @readonly = true, @class = "form-control " })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 ">
+            <hr />
+            <div class="col-md-3 ">
+
+            </div>
+            <div class="col-md-9  noPadding ">
+                <div class="col-md-3 ">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PaymentMode, "Payment Mode", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-7">
+                            @Html.DropDownList("PaymentMode", null, "Please select", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PaymentMode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 ">
+                    <div class="form-group">
+                        @Html.Label("Amount", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-7">
+                            @Html.TextBox("Amount",null,    new { @readonly = true, @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PaymentMode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 ">
+                    <div class="form-group">
+                        <div class="col-md-12 " style="text-align:right">
+                            @*<button type="button" id="BtnCreatePurchase" class="btncorner btn btn-danger" style="border-radius: 5px;">HOLD</button>
+                            <button type="button" id="BtnCreatePurchase" class="btncorner btn btn-danger" style="border-radius: 5px;">CREDIT PURCHASE</button>
+                            <button type="button" id="BtnCreatePurchase" class="btncorner btn btn-danger" style="border-radius: 5px;">CASH PAY</button>
+                            <button type="button" id="BtnCreatePurchase" class="btncorner btn btn-danger" style="border-radius: 5px;">MULTI MODE PAY</button>
+                            <button type="button" id="BtnCreatePurchase" class="btncorner btn btn-danger" style="border-radius: 5px;">CANCEL</button>*@
+                            <button type="button" id="BtnCreatePurchase" class="btncorner btn btn-danger" style="border-radius: 5px;">CREATE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+}
+
+<div id="divCreateLocationPopUPHolder" class="" role="group" aria-labelledby="dLabel">
+    <div id="divCreateLocationPopUP">
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        //LoadPurchaseItemsView();
+
+        $('#ApplyRoundOff').change(function () {
+            /*debugger*/;
+            var TotalAmountAfterTax = $("#TotalAmountAfterTax").val();
+            var RoundOff = Math.round(TotalAmountAfterTax);
+            if (this.checked) {
+
+                alert(this.checked);
+                $("#RoundOff").val(RoundOff - TotalAmountAfterTax);
+                $("#GrandTotal").val(RoundOff);
+            }
+            else {
+                alert(this.checked);
+                $("#RoundOff").val(0);
+                $("#GrandTotal").val(TotalAmountAfterTax);
+            }
+        });
+
+
+        $('#PaymentMode').off('change.PaymentMode').on('change.PaymentMode', function (e) {
+            //debugger;
+         
+            var id = $(this).val();
+            $("#Amount").val($("#GrandTotal").val())
+            if (id == 4) {
+                $("#Amount").prop('readonly', false);
+                $("#Amount").focus();
+
+            }
+            else {
+                $("#Amount").prop('readonly', true);
+            }
+            
+        });
+
+
+
+    });
+
+    $("#BtnCreatePurchase").click(
+        function (id) {
+            debugger;
+
+
+            if ($('#PartyInvoiceDate').val() == "") {
+                $("#PartyInvoiceDate").focus();
+                $("#PartyInvoiceDate").css("border-color", "#FF0000");
+                return false;
+            }
+             
+            if ($('#PurchaseDate').val() == "") {
+                $("#PurchaseDate").focus();
+                $("#PurchaseDate").css("border-color", "#FF0000");
+                return false;
+            }
+
+            if ($('#PartyName').val() == "") {
+                $("#PartyName").focus();
+                $("#PartyName").css("border-color", "#FF0000");
+                return false;
+            }
+
+            if ($('#PartyInvoiceNo').val() == "") {
+                $("#PartyInvoiceNo").focus();
+                $("#PartyInvoiceNo").css("border-color", "#FF0000");
+                return false;
+            }
+
+            if ($('#PaymentMode').val() == "") {
+                $("#PaymentMode").focus();
+                $("#PaymentMode").css("border-color", "#FF0000");
+                return false;
+            }
+            //else if ($('#PaymentMode').val() == 4) {
+            //    if ($('#Amount').val() == "") {
+            //        $("#Amount").focus();
+            //        $("#Amount").css("border-color", "#FF0000");
+            //        return false;
+            //    }
+            //}
+            //var d1 = $('#FormPurchase').serialize();
+            //var data1 = $('#FormPurchase').serializeArray();
+            var data = $('#FormPurchase').serializeArray().reduce(function (obj, item) {
+                obj[item.name] = item.value;
+
+                return obj;
+            }, {});
+
+            AddPurchase(data);
+
+        });
+
+    function AddPurchase(data) {
+        /*debugger*/;
+        var strURL = '/Purchase/AddPurchase/';
+        $.ajax({
+            data: { request: JSON.stringify(data) },
+            datatype: 'json',
+            url: strURL,
+            type: 'POST',
+            error: function (xhr, ajaxOptions, thrownError) {
+                 /*debugger*/;
+                alert("Error : " + xhr.responseText.match(/.*<title.*>(.*)<\/title>.*/) + thrownError);
+                alert("Error : "   + thrownError);
+
+
+            }
+
+        });
+    }
+
+    $(".CreateNewItem").click(
+        function (id) {
+            //debugger;
+            var PartyInvoiceNo = $('#PartyInvoiceNo').val();
+            if (PartyInvoiceNo == "") {
+                alert("Party Invoice No is missing ! ")
+                $("#PartyInvoiceNo").focus();
+                $("#PartyInvoiceNo").css("border-color", "#FF0000");
+                return;
+            }
+            var PurchaseID = '@ViewBag.ID';
+            if (PurchaseID == 'undefined' || PurchaseID == 1)
+            {
+                alert("Purchase ID is missing!");
+                return;
+            }
+            else {
+                LoadCreateItemListPopUP(PurchaseID, PartyInvoiceNo);
+            }
+        });
+
+    function LoadCreateItemListPopUP(PurchaseID, PartyInvoiceNo) {
+        //debugger;
+        var divPopUP = $('#divCreateLocationPopUP');
+        var strURL = '/Purchase/CreateItemList';
+        $.ajax({
+            data: { "PurchaseID": PurchaseID, "PartyInvoiceNo": PartyInvoiceNo },
+            datatype: 'json',
+            url: strURL,
+            type: 'GET',
+            cache: false,
+            context: divPopUP,
+            success: function (result) {
+
+                if (result == "")
+                { alert("Data service connectivity error."); }
+                else {
+                    this.html(result);
+                    $('#createItemListModal').modal('show');
+
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //debugger;;
+                alert("Error : " + xhr.responseText);
+
+            }
+        });
+    }
+
+    function LoadEditItemListPopUP(ItemListID) {
+        //debugger;
+        var divPopUP = $('#divCreateLocationPopUP');
+        var strURL = '/Purchase/CreateItemList';
+        $.ajax({
+            data: { "ID": id },
+            datatype: 'json',
+            url: strURL,
+            type: 'GET',
+            cache: false,
+            context: divPopUP,
+            success: function (result) {
+
+                if (result == "") { alert("Data service connectivity error."); }
+                else {
+                    this.html(result);
+                    $('#createItemListModal').modal('show');
+
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //debugger;;
+                alert("Error : " + xhr.responseText);
+
+            }
+        });
+    }
+
+    function LoadPurchaseItemsView() {
+        //modalBlock();
+        var divPopUP = $('#divLoadItems');
+
+        $.ajax({
+            type: "POST",
+            datatype: 'json',
+            url: '/Purchase/LoadItems',
+            cache: false,
+            context: divPopUP, // document.body,
+            //data: { "StoreIdName": qsStore },
+            success: function (data) {
+                    $(this).html(data);
+            }, error: function (xhr, ajaxOptions, thrownError) {
+                //debugger;;
+                alert("Error : " + xhr.responseText);
+                //$.unblockUI();
+            }
+        });
+
+    }
+
+    function AddItemToSession(data) {
+        //debugger;
+        var strURL = '/Purchase/AddItemToSession';
+        $.ajax({
+            data: { request: JSON.stringify(data) },
+            datatype: 'json',
+            url: strURL,
+            type: 'POST',
+            success: function (response) {
+                //debugger;
+
+                $('#createItemListModal').modal('hide');
+                LoadPurchaseItemsView();
+                LoadTotalData(response.total)
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                // debugger;
+                alert("Error : " + xhr.responseText + thrownError);
+                //$.unblockUI();
+
+            }
+
+        });
+    }
+
+    function LoadTotalData(data)
+    {
+        /*debugger*/;
+        $("#TotalAmountBeforeTax").val(data.TotalAmountBeforeTax);
+        $("#TaxAmount").val(data.TaxAmount);
+        $("#TotalAmountAfterTax").val(data.TotalAmountAfterTax);
+        $("#RoundOff").val(0);
+        $("#GrandTotal").val(data.TotalAmountAfterTax);
+
+    }
+
+    //function funApplyRoundOff() {
+    //    /*debugger*/;
+    //    var TotalAmountAfterTax = $("#TotalAmountAfterTax").val();
+    //    var RoundOff = Math.round(TotalAmountAfterTax);
+    //    if (this.checked) {
+
+    //        alert(this.checked);
+    //        $("#RoundOff").val(RoundOff - TotalAmountAfterTax );
+    //        $("#GrandTotal").val(RoundOff);
+    //    }
+    //    else {
+    //        alert(this.checked);
+    //        $("#RoundOff").val(0);
+    //        $("#GrandTotal").val(TotalAmountAfterTax);
+    //    }
+    //}
+</script>

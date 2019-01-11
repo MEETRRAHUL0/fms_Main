@@ -1,0 +1,75 @@
+﻿@model FMS.tblMenu
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblMenu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DisplayName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DisplayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.icon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.icon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ordinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ordinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.path)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.path)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParentID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParentID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsEnable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsEnable)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

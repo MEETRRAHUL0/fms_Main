@@ -1,0 +1,142 @@
+﻿@model IEnumerable<FMS.tbl_Purchase>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AutoID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartyInvoiceDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PurchaseDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartyInvoiceNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentDueAfter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReverseCharge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscountAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherCharge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAmountBeforeTax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaxAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAmountAfterTax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoundOff)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GrandTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PurchaseBook)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScanCopy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDatetime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_PaymentMode.Mode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_Supplier.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AutoID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PartyInvoiceDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchaseDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PartyInvoiceNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentDueAfter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReverseCharge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remark)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscountAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherCharge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalAmountBeforeTax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaxAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalAmountAfterTax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoundOff)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GrandTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchaseBook)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScanCopy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDatetime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_PaymentMode.Mode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_Supplier.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
