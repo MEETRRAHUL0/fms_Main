@@ -263,13 +263,13 @@
             $("#CGST").val("");
             $("#SGST").val("");
             $('#TotalPriceAfterTax').val("");
-            $('#PricePerUnit').val("")
+            $('#PricePerUnit').val("");
             $("#Qty").val("");
             
 
             $("#MRP").val("");
             $('#ManufactureDate').val("");
-            $('#Expirydate').val("")
+            $('#Expirydate').val("");
             $("#BatchNo").val("");
 
 
@@ -307,7 +307,7 @@
                 $("#ItemID").css("border-color", "#FF0000");
                 return false;
             }
-            var price = $('#PricePerUnit').val()
+            var price = $('#PricePerUnit').val();
             debugger;
 
             $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
@@ -357,7 +357,7 @@
                 $("#ItemID").css("border-color", "#FF0000");
                 return false;
             }
-            var price = $('#PricePerUnit').val()
+            var price = $('#PricePerUnit').val();
 
             $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
 
@@ -403,7 +403,7 @@
 
         $('#TotalPriceBeforeTax').off('keyup.TotalPriceBeforeTax').on('keyup.TotalPriceBeforeTax', function (e) {
             /*debugger*/;
-            var price = $('#TotalPriceBeforeTax').val()
+            var price = $('#TotalPriceBeforeTax').val();
 
             $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
             if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
@@ -430,10 +430,10 @@
 
                 }
             }
-        })
+        });
     });
 
-    $('#createItemListModal').modal({ backdrop: 'static', keyboard: false })
+    $('#createItemListModal').modal({ backdrop: 'static', keyboard: false });
 
     $("#BtnCancel").click(
         function (id) {
@@ -445,7 +445,7 @@
 
     $("#BtnCreate").click(
         function (id) {
-            debugger
+            debugger;
             if ($('#ItemID').val() == "") {
                 $("#ItemID").focus();
                 $("#ItemID").css("border-color", "#FF0000");

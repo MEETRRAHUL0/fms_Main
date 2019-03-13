@@ -16,6 +16,9 @@
             @Html.DisplayNameFor(model => model.AutoID)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.SaleID)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.InvoiceID)
         </th>
         <th>
@@ -54,6 +57,9 @@
             @Html.DisplayFor(modelItem => item.AutoID)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.SaleID)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.InvoiceID)
         </td>
         <td>
@@ -84,9 +90,9 @@
             @Html.DisplayFor(modelItem => item.tbl_vendor.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SaleID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SaleID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SaleID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.SaleID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.SaleID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.SaleID })
         </td>
     </tr>
 }

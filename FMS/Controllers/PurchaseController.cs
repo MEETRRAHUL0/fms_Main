@@ -1,6 +1,5 @@
 ﻿using FMS.Helper;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -47,8 +46,6 @@ namespace FMS.Controllers
             return PartialView();
         }
 
-
-
         [HttpPost]
         public JsonResult GetItemDetails(string id)
         {
@@ -82,6 +79,7 @@ namespace FMS.Controllers
             }
             return Json(new { StockIn, StockOut, StockAvailable, HSNSACNum, SGST, CGST, GST, MeasuringUnit, Type }, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         public JsonResult AddItemToSession(string request)
         {
@@ -107,14 +105,11 @@ namespace FMS.Controllers
                        }
                          )).FirstOrDefault();
 
-
             return Json(new { PurchaseItemStock, total }, JsonRequestBehavior.AllowGet);
         }
 
-
         public JsonResult DeleteItemFromSession(string ID)
         {
-
             PurchaseItemStock.RemoveAll(q => q.ID == ID);
 
             ViewBag.tbl_ItemStock = PurchaseItemStock;
@@ -133,7 +128,6 @@ namespace FMS.Controllers
                            TotalAmountAfterTax = g.Sum(q => q.TotalPriceAfterTax),
                        }
                          )).FirstOrDefault();
-
 
             return Json(new { PurchaseItemStock, total }, JsonRequestBehavior.AllowGet);
         }
@@ -219,7 +213,7 @@ namespace FMS.Controllers
                     // 2  CREDIT PURCHASE --  one transaction entry with credit (out) with unpaid status
 
                     // 3  CASH PAY  -- one transaction entry with credit (out)/ Paid
-                    //             one payment Entry with full amount 
+                    //             one payment Entry with full amount
                     //             one transaction entry with Debit (in) with payment ID
 
                     // 4 MULTI MODE PAY -- one transaction entry with credit (out)
@@ -228,12 +222,8 @@ namespace FMS.Controllers
 
                     if (tbl_Purchase.PaymentMode.Value != PaymentMode.HOLD)  // not hold
                     {
-
                         decimal amount = tbl_Purchase.Amount;
                         string creditTID = Helper.GenericHelper.GetMaxValue(SequenceTable.tbl_TransactionCredit.ToString());
-
-                        var EntryType = TransactionEntryType.Purchase;
-                        var tt = PaymentMode.CASH_PAY;
                         tbl_Transaction tbl_Transactioncredit = new tbl_Transaction()
                         {
                             ID = creditTID,
@@ -242,7 +232,7 @@ namespace FMS.Controllers
                             EntryDate = tbl_Purchase.PurchaseDate.ToString(),
 
                             EntryType = TransactionEntryType.Purchase.ToString(),  //"Purchase", // Purchase/Sales/Recipt/Payment
-                            Status = TransactionStatus.Unpaid,  ///Paid/Unpaid/Pending/Paid Against entries : // Recive  Against entries 
+                            Status = TransactionStatus.Unpaid,  ///Paid/Unpaid/Pending/Paid Against entries : // Recive  Against entries
                             TransactionType = TransactionType.Credit.ToString(),  ///Debit/ credit --  For Real: Debit what comes in, credit what goes out.
                             //TransactionRef = null,
 
@@ -253,7 +243,6 @@ namespace FMS.Controllers
                             Amount = tbl_Purchase.GrandTotal,
 
                             VendorID = tbl_Purchase.PartyName
-
                         };
                         db.tbl_Transaction.Add(tbl_Transactioncredit);
                         //db.SaveChanges();
@@ -264,7 +253,6 @@ namespace FMS.Controllers
                         //db.SaveChanges();
                         if (tbl_Purchase.PaymentMode == 2)  //CREDIT PURCHASE
                         {
-
                         }
                         else if (tbl_Purchase.PaymentMode == 3)  //CASH PAY
                         {
@@ -280,7 +268,6 @@ namespace FMS.Controllers
                                 PaymentMode = "CASH",
                                 //Remark = "",
                                 //TransactionID = creditTID,
-
                             };
                             db.tbl_Payment.Add(tbl_Payment);
 
@@ -296,7 +283,7 @@ namespace FMS.Controllers
                                 EntryDate = tbl_Purchase.PurchaseDate.ToString(),
 
                                 EntryType = TransactionEntryType.Purchase.ToString(),  // "Purchase", // Purchase/Sales/Recipt/Payment
-                                Status = TransactionStatus.PaidAgainstEntries + tbl_Purchase.ID,  ///Paid/Unpaid/Pending/Paid Against entries : // Recive  Against entries 
+                                Status = TransactionStatus.PaidAgainstEntries + tbl_Purchase.ID,  ///Paid/Unpaid/Pending/Paid Against entries : // Recive  Against entries
                                 TransactionType = TransactionType.Debit.ToString(),  ///Debit/ credit --  For Real: Debit what comes in, credit what goes out.
                                 TransactionRef = tbl_Purchase.ID,
 
@@ -308,13 +295,11 @@ namespace FMS.Controllers
                                 Amount = tbl_Purchase.GrandTotal,
 
                                 VendorID = tbl_Purchase.PartyName
-
                             };
                             db.tbl_Transaction.Add(tbl_TransactionDebit);
 
                             tbl_Sequence NewSequenceValuetbl_Transaction2 = Helper.GenericHelper.GetNextUpdatedData("tbl_TransactionDebit");
                             db.Entry(NewSequenceValuetbl_Transaction2).State = EntityState.Modified;
-
 
                             //db.SaveChanges();
 
@@ -322,7 +307,6 @@ namespace FMS.Controllers
                             tbl_Transactioncredit.Status = TransactionStatus.Paid;
                             //db.Entry(tbl_Transactionresult).State = EntityState.Modified;
                             //db.SaveChanges();
-
                         }
                         else if (tbl_Purchase.PaymentMode == 4)  //MULTI MODE PAY
                         {
@@ -338,7 +322,6 @@ namespace FMS.Controllers
                                 PaymentMode = "CASH",
                                 //Remark = "",
                                 //TransactionID = creditTID,
-
                             };
                             db.tbl_Payment.Add(tbl_Payment);
 
@@ -354,7 +337,7 @@ namespace FMS.Controllers
                                 EntryDate = tbl_Purchase.PurchaseDate.ToString(),
 
                                 EntryType = TransactionEntryType.Purchase.ToString(),  // "Purchase", // Purchase/Sales/Recipt/Payment
-                                Status = TransactionStatus.PaidAgainstEntries + tbl_Purchase.ID,  ///Paid/Unpaid/Pending/Paid Against entries : // Recive  Against entries 
+                                Status = TransactionStatus.PaidAgainstEntries + tbl_Purchase.ID,  ///Paid/Unpaid/Pending/Paid Against entries : // Recive  Against entries
                                 TransactionType = TransactionType.Debit.ToString(),  ///Debit/ credit --  For Real: Debit what comes in, credit what goes out.
                                 TransactionRef = tbl_Purchase.ID,
 
@@ -366,17 +349,12 @@ namespace FMS.Controllers
                                 Amount = amount,
 
                                 VendorID = tbl_Purchase.PartyName
-
                             };
                             db.tbl_Transaction.Add(tbl_TransactionDebit);
 
                             tbl_Sequence NewSequenceValuetbl_Transaction2 = Helper.GenericHelper.GetNextUpdatedData("tbl_TransactionDebit");
                             db.Entry(NewSequenceValuetbl_Transaction2).State = EntityState.Modified;
-
-
                         }
-
-
                     }
 
                     bool saved = false;
@@ -389,7 +367,6 @@ namespace FMS.Controllers
                     catch (Exception e)
                     {
                         throw new InvalidOperationException(e.Message);
-
                     }
                     finally
                     {
@@ -399,18 +376,16 @@ namespace FMS.Controllers
                         }
                     }
 
-
                     //if (tbl_Purchase.PaymentMode == 4)  //MULTI MODE PAY
                     //    return JavaScript("window.location = '/purchase/index'");
                     //else
-                        return JavaScript("window.location = '/purchase/index'");
+                    return JavaScript("window.location = '/purchase/index'");
                 }
                 else
                 {
                     ViewBag.PaymentMode = new SelectList(db.tbl_PaymentMode, "ID", "Mode", tbl_Purchase.PaymentMode);
                     ViewBag.PartyName = new SelectList(db.tbl_vendor, "ID", "Name", tbl_Purchase.PartyName);
                     throw new InvalidOperationException("Please add item to continue!!");
-
                 }
             }
             //return RedirectToAction("Index");

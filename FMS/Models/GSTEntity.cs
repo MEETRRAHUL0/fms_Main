@@ -36,6 +36,8 @@ namespace FMS.Models
         [Display(Name = "Display Name")]
         [Required(ErrorMessage = "Display Name is missing")]
         public string Name { get; set; }
+
+        public int Ordinal { get; set; }
          
     }
 }

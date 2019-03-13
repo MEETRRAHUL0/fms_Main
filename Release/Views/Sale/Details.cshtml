@@ -101,6 +101,9 @@
 
     </dl>
 </div>
+<div style="overflow:auto">
+    @Html.Partial("Viewtems", Model.tbl_ItemStock.ToList())
+</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.SaleID }) |
     @Html.ActionLink("Back to List", "Index")
